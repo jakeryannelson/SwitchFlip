@@ -55,7 +55,9 @@ h1{font-size:clamp(42px,5.6vw,72px);line-height:1.0;letter-spacing:-.035em;font-
 .demo.on{background:var(--violet-soft)}
 .demo-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
 .demo-top .label{font-weight:700;font-size:18px}
-.demo-top .label span{display:inline-block;min-width:3.2ch}
+.demo-top .label{display:flex;align-items:baseline;gap:12px;font-size:22px}
+.demo-top .label .hint{font-size:14px;font-weight:500;color:var(--muted)}
+.demo.on .demo-top .label .hint{visibility:hidden}
 .switch{position:relative;width:112px;height:60px;border-radius:999px;border:0;background:var(--off);cursor:pointer;padding:0;transition:background .35s var(--ease);flex:none}
 .switch .knob{position:absolute;top:6px;left:6px;width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(17,17,20,.25);transition:transform .35s var(--ease)}
 .switch[aria-checked="true"]{background:var(--violet)}
@@ -185,7 +187,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 
   <div class="demo" id="demo">
     <div class="demo-top">
-      <div class="label">A Tuesday at your business, switch <span id="state">off</span></div>
+      <div class="label"><span id="state">Before</span><span class="hint">Flip it</span></div>
       <button class="switch" id="switch" role="switch" aria-checked="false" aria-label="Flip the switch to see the after">
         <span class="knob"></span>
       </button>
@@ -313,7 +315,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 <script>
 (function(){
   var demo=document.getElementById('demo'), sw=document.getElementById('switch'), st=document.getElementById('state');
-  function set(on){ sw.setAttribute('aria-checked', on?'true':'false'); demo.classList.toggle('on', on); st.textContent = on?'on':'off'; }
+  function set(on){ sw.setAttribute('aria-checked', on?'true':'false'); demo.classList.toggle('on', on); st.textContent = on?'After':'Before'; }
   sw.addEventListener('click', function(){ set(sw.getAttribute('aria-checked')!=='true'); });
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce){ set(true); } else { setTimeout(function(){ if(sw.getAttribute('aria-checked')!=='true') set(true); }, 1600); }
