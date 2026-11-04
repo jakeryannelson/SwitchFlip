@@ -120,7 +120,7 @@ h2{font-size:clamp(32px,4.2vw,52px);line-height:1.03;letter-spacing:-.03em;font-
 
 /* about */
 .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
-.portrait{aspect-ratio:4/5;border-radius:28px;background:var(--fog);border:2px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:500;text-align:center;padding:24px}
+.portrait{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:28px;background:var(--fog)}
 .about p{font-size:18px;color:var(--muted);max-width:52ch;margin:0 0 16px}
 .about p strong{color:var(--ink)}
 .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
@@ -273,7 +273,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 </div></section>
 
 <section id="jake"><div class="wrap about">
-  <div class="portrait">[Jake's photo goes here]</div>
+  <img class="portrait" src="jake.jpg" alt="Jake Nelson, founder of SwitchFlip" width="640" height="800">
   <div>
     <h2>Hi, I'm Jake.</h2>
     <p>I spent eight years selling software to companies across the West, from 20-person shops to the mid-market. <strong>I've sat in a lot of back offices and watched good people do work a computer should be doing.</strong> I started SwitchFlip to fix that, one rung at a time, for businesses that don't have an IT department and shouldn't need one.</p>
