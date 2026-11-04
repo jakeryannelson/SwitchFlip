@@ -86,6 +86,7 @@ h2{font-size:clamp(32px,4.2vw,52px);line-height:1.03;letter-spacing:-.03em;font-
 /* services: menu rows, not cards */
 .menu{border-top:3px solid var(--ink)}
 .row{display:grid;grid-template-columns:1fr 1.4fr;gap:32px;padding:34px 0;border-bottom:1px solid var(--line)}
+.row p{max-width:58ch}
 .row:last-child{border-bottom:3px solid var(--ink)}
 .row h3{margin:0;font-size:28px;letter-spacing:-.02em;line-height:1.15}
 .row h3 small{display:block;color:var(--violet);font-size:14px;font-weight:700;margin-bottom:8px}
@@ -119,9 +120,11 @@ h2{font-size:clamp(32px,4.2vw,52px);line-height:1.03;letter-spacing:-.03em;font-
 .fit li:first-child{border-top:0}
 
 /* about */
-.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
-.portrait{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:28px;background:var(--fog)}
-.about p{font-size:18px;color:var(--muted);max-width:52ch;margin:0 0 16px}
+.about{max-width:760px}
+.who-head{display:flex;align-items:center;gap:22px;margin-bottom:20px}
+.who-head h2{margin:0}
+.portrait{width:112px;height:112px;border-radius:50%;flex:none;display:block}
+.about p{font-size:18px;color:var(--muted);max-width:60ch;margin:0 0 16px}
 .about p strong{color:var(--ink)}
 .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 .facts span{background:var(--fog);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500}
@@ -141,7 +144,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 @media (max-width:960px){
   .hero{grid-template-columns:1fr;gap:40px}
   .track{grid-template-columns:1fr 1fr} .track::before,.track::after{display:none}
-  .row,.fit,.about,.contact{grid-template-columns:1fr}
+  .row,.fit,.contact{grid-template-columns:1fr}
   .contact{padding:40px}
 }
 @media (max-width:640px){
@@ -160,7 +163,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
   <div class="wrap nav">
     <a class="logo" href="#top" aria-label="SwitchFlip home"><svg class="mark" viewBox="0 0 112 176" aria-hidden="true"><rect x="4" y="4" width="104" height="42" rx="21" fill="currentColor"/><circle class="k1" cx="25" cy="25" r="15" fill="var(--fog)"/><rect x="4" y="54" width="104" height="42" rx="21" fill="currentColor"/><circle class="k2" cx="87" cy="75" r="15" fill="var(--violet)"/><rect x="4" y="104" width="42" height="68" rx="21" fill="currentColor"/><circle class="k3" cx="25" cy="151" r="15" fill="var(--violet)"/></svg><svg class="wordmark" viewBox="0 -71 463 97" aria-hidden="true"><path d="M28.5 1.1Q19.5 1.1 13.0 -1.5999999999999999Q6.5 -4.3 1.1 -10.100000000000001L12.4 -21.5Q16.1 -17.6 20.3 -15.55Q24.5 -13.5 29.8 -13.5Q34.300000000000004 -13.5 36.75 -15.05Q39.2 -16.6 39.2 -19.3Q39.2 -22.200000000000003 36.8 -24.0Q34.4 -25.8 30.6 -27.15Q26.8 -28.5 22.6 -30.05Q18.400000000000002 -31.6 14.600000000000001 -34.05Q10.8 -36.5 8.4 -40.45Q6.0 -44.400000000000006 6.0 -50.5Q6.0 -57.2 9.25 -62.050000000000004Q12.5 -66.9 18.3 -69.5Q24.1 -72.10000000000001 31.8 -72.10000000000001Q39.5 -72.10000000000001 46.0 -69.45Q52.5 -66.8 56.7 -62.300000000000004L45.300000000000004 -51.0Q42.1 -54.2 38.8 -55.800000000000004Q35.5 -57.400000000000006 31.6 -57.400000000000006Q27.900000000000002 -57.400000000000006 25.800000000000004 -56.150000000000006Q23.700000000000003 -54.900000000000006 23.700000000000003 -52.400000000000006Q23.700000000000003 -49.6 26.1 -47.95Q28.5 -46.300000000000004 32.25 -45.0Q36.0 -43.7 40.25 -42.150000000000006Q44.5 -40.6 48.25 -38.1Q52.0 -35.6 54.400000000000006 -31.5Q56.800000000000004 -27.400000000000002 56.800000000000004 -21.1Q56.800000000000004 -10.5 49.35000000000001 -4.7Q41.900000000000006 1.1 28.5 1.1Z M71.7 0.0 56.199999999999996 -48.900000000000006H73.0L79.9 -22.1L88.1 -48.900000000000006H103.6L111.80000000000001 -22.1L118.80000000000001 -48.900000000000006H135.6L120.1 0.0H104.4L95.9 -27.6L87.2 0.0Z M145.79999999999998 -54.6Q141.9 -54.6 139.3 -57.3Q136.7 -60.0 136.7 -63.900000000000006Q136.7 -67.8 139.3 -70.5Q141.9 -73.2 145.79999999999998 -73.2Q149.79999999999998 -73.2 152.39999999999998 -70.5Q155.0 -67.8 155.0 -63.900000000000006Q155.0 -60.0 152.39999999999998 -57.3Q149.79999999999998 -54.6 145.79999999999998 -54.6ZM137.1 0.0V-48.900000000000006H154.6V0.0Z M168.4 0.0V-34.4H157.6V-48.900000000000006H168.4V-69.10000000000001H185.8V-48.900000000000006H196.6V-34.4H185.8V0.0Z M223.1 1.1Q215.29999999999998 1.1 209.04999999999998 -2.2Q202.79999999999998 -5.5 199.2 -11.25Q195.6 -17.0 195.6 -24.400000000000002Q195.6 -31.8 199.25 -37.6Q202.89999999999998 -43.400000000000006 209.14999999999998 -46.75Q215.39999999999998 -50.1 223.29999999999998 -50.1Q234.6 -50.1 242.29999999999998 -42.5L231.29999999999998 -31.5Q228.29999999999998 -34.5 223.29999999999998 -34.5Q219.0 -34.5 216.14999999999998 -31.75Q213.29999999999998 -29.0 213.29999999999998 -24.5Q213.29999999999998 -20.0 216.2 -17.2Q219.1 -14.4 223.29999999999998 -14.4Q226.1 -14.4 228.1 -15.3Q230.1 -16.2 231.6 -17.900000000000002L242.7 -6.9Q238.5 -2.8000000000000003 233.8 -0.8500000000000001Q229.1 1.1 223.1 1.1Z M245.99999999999997 0.0V-72.9H263.4V-46.0Q268.4 -49.900000000000006 275.79999999999995 -49.900000000000006Q281.7 -49.900000000000006 286.0 -47.550000000000004Q290.29999999999995 -45.2 292.69999999999993 -41.05Q295.09999999999997 -36.9 295.09999999999997 -31.6V0.0H277.7V-27.6Q277.7 -31.0 275.65 -32.95Q273.59999999999997 -34.9 270.59999999999997 -34.9Q267.5 -34.9 265.45 -32.95Q263.4 -31.0 263.4 -27.6V0.0Z M302.5 0.0V-70.9H353.4V-55.800000000000004H320.4V-41.6H351.8V-26.5H320.4V0.0Z M358.5 0.0V-72.9H375.9V0.0Z M391.7 -54.6Q387.8 -54.6 385.20000000000005 -57.3Q382.6 -60.0 382.6 -63.900000000000006Q382.6 -67.8 385.20000000000005 -70.5Q387.8 -73.2 391.7 -73.2Q395.7 -73.2 398.29999999999995 -70.5Q400.9 -67.8 400.9 -63.900000000000006Q400.9 -60.0 398.29999999999995 -57.3Q395.7 -54.6 391.7 -54.6ZM383.0 0.0V-48.900000000000006H400.5V0.0Z M407.6 20.700000000000003V-48.900000000000006H425.0V-46.300000000000004Q427.4 -48.0 430.4 -48.95Q433.4 -49.900000000000006 436.7 -49.900000000000006Q443.8 -49.900000000000006 449.20000000000005 -46.60000000000001Q454.6 -43.300000000000004 457.65 -37.550000000000004Q460.7 -31.8 460.7 -24.400000000000002Q460.7 -17.1 457.65 -11.350000000000001Q454.6 -5.6000000000000005 449.20000000000005 -2.3000000000000003Q443.8 1.0 436.7 1.0Q429.8 1.0 424.6 -2.5V20.700000000000003ZM433.5 -14.5Q437.7 -14.5 440.4 -17.3Q443.1 -20.1 443.1 -24.5Q443.1 -28.8 440.4 -31.6Q437.7 -34.4 433.6 -34.4Q429.3 -34.4 426.65 -31.65Q424.0 -28.900000000000002 424.0 -24.5Q424.0 -20.1 426.65 -17.3Q429.3 -14.5 433.5 -14.5Z" fill="currentColor"/></svg></a>
     <ul>
-      <li><a href="#build">The ladder</a></li>
+      <li><a href="#build">What we do</a></li>
       <li><a href="#how">How it goes</a></li>
       <li><a href="#fit">Good fit?</a></li>
       <li><a href="#jake">Jake</a></li>
@@ -198,35 +201,31 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 </div>
 
 <section id="build"><div class="wrap">
-  <h2>Start wherever you are.</h2>
-  <p class="sub">Four rungs. Most people start on the first or second, and every rung makes the next one easier. You don't have to climb all of them.</p>
+  <h2>Four things we do.</h2>
+  <p class="sub">Most people start with the first or second. Each one makes the next easier, but you don't have to do all four.</p>
   <div class="menu">
     <div class="row">
-      <h3><small>Rung 1</small>Switch on</h3>
+      <h3><small>1</small>A new website</h3>
       <div>
-        <p>A website that looks like you're still in business, loads fast, works on a phone, and you can update without calling anyone. Plus the basics: email on your domain, a booking link, the Google listing fixed.</p>
-        <div class="flip"><span class="b">"Our site? Yeah, we should probably update that."</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="a">A site you'd send a customer to on purpose</span></div>
+        <p>If yours is old, slow, or you're a little embarrassed to send people to it, we rebuild it. You get a site that works on a phone and that you can edit yourself. If you don't have email on your own domain or a link people can use to book time with you, we set those up too.</p>
       </div>
     </div>
     <div class="row">
-      <h3><small>Rung 2</small>Connect</h3>
+      <h3><small>2</small>Claude in the apps you already use</h3>
       <div>
-        <p>Claude wired into the apps your team already lives in: Gmail, Calendar, Drive, Slack, your CRM, your accounting software. Set up safely, with rules, and your people trained to actually use it. This is the rung that changes how the office feels, and it takes days, not months.</p>
-        <div class="flip"><span class="b">Two people quietly using ChatGPT on their phones</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="a">The whole team on one secure setup that knows your calendar and your files</span></div>
+        <p>We set Claude up for your team and connect it to Gmail, Google Calendar, Drive, Slack, your CRM, your accounting software, whatever you run on. After that it can read the email, check the calendar, find the file, and draft the reply. We train your people on how to use it and write down the rules so nobody has to guess. This usually takes days, not months.</p>
       </div>
     </div>
     <div class="row">
-      <h3><small>Rung 3</small>Automate</h3>
+      <h3><small>3</small>An agent that does a job</h3>
       <div>
-        <p>An agent that owns a job end to end. Follow-ups, intake, scheduling, reconciliations, the weekly report, the inbox nobody wants to open. It works inside rules you set, keeps a log you can audit, and hands anything unusual to a person.</p>
-        <div class="flip"><span class="b">A job that lives in one person's head</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="a">A job that runs on schedule, with receipts</span></div>
+        <p>Once Claude is connected, we can give it a job to own. Chasing overdue invoices. Sorting the shared inbox. Scheduling. Intake forms. The Monday report. It runs on a schedule, follows the rules you set, keeps a log of what it did, and hands anything unusual to a person.</p>
       </div>
     </div>
     <div class="row">
-      <h3><small>Rung 4</small>Build</h3>
+      <h3><small>4</small>Bigger builds</h3>
       <div>
-        <p>For companies that outgrow the first three: custom systems, multiple agents working together, deeper integrations with the software you run the business on. Scoped project by project, built with your people watching.</p>
-        <div class="flip"><span class="b">"We'd need a whole IT department for that."</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="a">You'd need us for six weeks</span></div>
+        <p>For companies that outgrow the first three. Custom systems, several agents working together, deeper connections into the software the business runs on. Scoped one project at a time, built with your people watching.</p>
       </div>
     </div>
   </div>
@@ -236,9 +235,13 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
   <p>We've seen the same back office in retail, manufacturing, software, hospitality, residential and commercial real estate, professional services, healthcare offices, trades, and the shop on the corner. Two people or five hundred. The work looks the same. So does the fix.</p>
 </div></div>
 
+<div class="industries" aria-label="Industries we work with"><div class="wrap">
+  <p>We've seen the same back office in retail, manufacturing, software, hospitality, residential and commercial real estate, professional services, healthcare offices, trades, and the shop on the corner. Two people or five hundred. The work looks the same. So does the fix.</p>
+</div></div>
+
 <section id="how" class="dark"><div class="wrap">
   <h2>How it goes</h2>
-  <p class="sub">Same shape at every rung. We don't push you toward a direction. We work on what you actually want fixed, then throw out a couple of ideas you haven't thought of. In that order.</p>
+  <p class="sub">Same shape whatever we're doing. We don't push you toward a direction. We work on what you actually want fixed, then throw out a couple of ideas you haven't thought of. In that order.</p>
   <div class="track">
     <div class="step"><h3><small>Week 0</small>A call</h3><p>Thirty minutes. You tell us what's slow. We tell you what's realistic and what isn't. Sometimes the answer is "don't use AI for that."</p></div>
     <div class="step"><h3><small>Week 1</small>One thing, scoped</h3><p>One site, one connection, or one job, with a clear before and after, a fixed price, and a fixed date. We measure the before so the after means something.</p></div>
@@ -273,17 +276,17 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 </div></section>
 
 <section id="jake"><div class="wrap about">
-  <img class="portrait" src="jake.jpg" alt="Jake Nelson, founder of SwitchFlip" width="640" height="800">
-  <div>
+  <div class="who-head">
+    <img class="portrait" src="jake.png" alt="Jake Nelson" width="112" height="112">
     <h2>Hi, I'm Jake.</h2>
-    <p>I spent eight years selling software to companies across the West, from 20-person shops to the mid-market. <strong>I've sat in a lot of back offices and watched good people do work a computer should be doing.</strong> I started SwitchFlip to fix that, one rung at a time, for businesses that don't have an IT department and shouldn't need one.</p>
-    <p>SwitchFlip is a team of applied AI engineers, each certified by Anthropic on Claude. Small on purpose: no account managers, no layers. When you call, you get the people doing the work.</p>
-    <div class="facts">
-      <span>Denver, Colorado</span>
-      <span>Fly fishes when the backlog is clear</span>
-      <span>Will answer your email himself</span>
-      <span>Has strong opinions about spreadsheets</span>
-    </div>
+  </div>
+  <p>I spent eight years selling software to companies across the West, from 20-person shops to the mid-market. <strong>I've sat in a lot of back offices and watched good people do work a computer should be doing.</strong> I started SwitchFlip to fix that, one job at a time, for businesses that don't have an IT department and shouldn't need one.</p>
+  <p>SwitchFlip is a team of applied AI engineers, each certified by Anthropic on Claude. Small on purpose: no account managers, no layers. When you call, you get the people doing the work.</p>
+  <div class="facts">
+    <span>Denver, Colorado</span>
+    <span>Fly fishes when the backlog is clear</span>
+    <span>Will answer your email himself</span>
+    <span>Has strong opinions about spreadsheets</span>
   </div>
 </div></section>
 
