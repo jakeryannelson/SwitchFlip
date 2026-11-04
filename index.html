@@ -3,177 +3,280 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SwitchFlip | Applied AI for finance and operations teams</title>
-<meta name="description" content="SwitchFlip is a Denver-based applied AI consultancy. We build working AI systems for finance and operations teams at consumer brands, on Anthropic's Claude.">
+<title>SwitchFlip. Flip the switch on the work nobody should do by hand.</title>
+<meta name="description" content="SwitchFlip is a small applied-AI shop in Denver. We build working AI systems for finance and ops teams at consumer brands, on Claude. One workflow at a time, in weeks, handed over.">
+<meta property="og:title" content="SwitchFlip">
+<meta property="og:description" content="Flip the switch on the work nobody should do by hand. Applied AI for finance and ops teams at consumer brands.">
 <link rel="icon" href="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%201024'><rect%20width='1024'%20height='1024'%20rx='224'%20fill='%23111114'/><g%20transform='translate(333.8%20232)%20scale(3.1818)'><rect%20x='4'%20y='4'%20width='104'%20height='42'%20rx='21'%20fill='%23F3F3F7'/><circle%20cx='25'%20cy='25'%20r='15'%20fill='%23111114'/><rect%20x='4'%20y='54'%20width='104'%20height='42'%20rx='21'%20fill='%238B5CF6'/><circle%20cx='87'%20cy='75'%20r='15'%20fill='%23111114'/><rect%20x='4'%20y='104'%20width='42'%20height='68'%20rx='21'%20fill='%238B5CF6'/><circle%20cx='25'%20cy='151'%20r='15'%20fill='%23111114'/></g></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#111114; --fog:#F3F3F7; --paper:#FFFFFF; --violet:#8B5CF6; --violet-deep:#6D3FE0;
-  --muted:#5B6470; --line:#E3E4EA; --knob-off:#F3F3F7;
+  --ink:#111114; --fog:#F3F3F7; --paper:#FFFFFF; --violet:#8B5CF6; --violet-deep:#6A3BE0; --violet-soft:#EFE8FF;
+  --muted:#5F6673; --line:#DDDFE6; --off:#C9CBD3;
+  --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:'Outfit',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:'Outfit',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased;font-size:17px}
 a{color:inherit}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px;border-radius:6px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* logo */
 .logo{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.logo .mark{height:36px;width:auto}
-.logo .wordmark{height:22px;width:auto}
-header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);z-index:10}
+.logo .mark{height:34px;width:auto}
+.logo .wordmark{height:21px;width:auto}
+.logo .mark circle{transition:cx .35s var(--ease),cy .35s var(--ease)}
+.logo:hover .k1{cx:87} .logo:hover .k2{cx:25} .logo:hover .k3{cy:125}
+
+/* header */
+header{position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(10px);z-index:10}
 .nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
 .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
 .nav ul a{text-decoration:none;font-weight:500;color:var(--muted)}
 .nav ul a:hover{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--ink);background:var(--ink);color:#fff;transition:transform .15s ease}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border-radius:999px;font-weight:700;font-size:17px;text-decoration:none;border:2px solid var(--ink);background:var(--ink);color:#fff;transition:transform .15s var(--ease),background .15s}
 .btn:hover{transform:translateY(-1px)}
-.btn.ghost{background:transparent;color:var(--ink)}
+.btn.quiet{background:transparent;color:var(--ink)}
 .btn.violet{background:var(--violet);border-color:var(--violet)}
 .btn.violet:hover{background:var(--violet-deep);border-color:var(--violet-deep)}
-.hero{padding:96px 0 72px}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.eyebrow i{width:10px;height:10px;border-radius:50%;background:var(--violet);display:inline-block}
-h1{font-size:clamp(40px,6vw,76px);line-height:1.02;letter-spacing:-.03em;font-weight:800;margin:20px 0 24px;max-width:14ch}
-h1 em{font-style:normal;color:var(--violet)}
-.lede{font-size:clamp(18px,2vw,22px);color:var(--muted);max-width:56ch;margin:0 0 36px}
+
+/* hero */
+.hero{padding:72px 0 64px;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+h1{font-size:clamp(42px,5.6vw,72px);line-height:1.0;letter-spacing:-.035em;font-weight:800;margin:0 0 22px;max-width:13ch}
+.lede{font-size:clamp(18px,1.6vw,21px);color:var(--muted);max-width:46ch;margin:0 0 32px}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.cta-row small{color:var(--muted);font-size:14px}
-.band{background:var(--fog);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.strip{background:var(--fog);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.strip .wrap{display:flex;flex-wrap:wrap;gap:12px 40px;padding:20px 24px;color:var(--muted);font-weight:500;font-size:15px}
-section{padding:88px 0}
-h2{font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-.025em;font-weight:800;margin:0 0 16px;max-width:22ch}
-.sub{color:var(--muted);font-size:18px;max-width:60ch;margin:0 0 44px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:var(--fog);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px}
-.card h3{margin:0;font-size:22px;letter-spacing:-.01em}
-.card p{margin:0;color:var(--muted)}
-.card .num{width:40px;height:40px;border-radius:12px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-.card ul{margin:4px 0 0;padding-left:18px;color:var(--muted)}
-.card li{margin:4px 0}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cta-row .note{color:var(--muted);font-size:15px;max-width:22ch;line-height:1.35}
+
+/* the switch demo */
+.demo{background:var(--fog);border-radius:28px;padding:28px;transition:background .5s var(--ease)}
+.demo.on{background:var(--violet-soft)}
+.demo-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+.demo-top .label{font-weight:700;font-size:18px}
+.demo-top .label span{display:inline-block;min-width:3.2ch}
+.switch{position:relative;width:112px;height:60px;border-radius:999px;border:0;background:var(--off);cursor:pointer;padding:0;transition:background .35s var(--ease);flex:none}
+.switch .knob{position:absolute;top:6px;left:6px;width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(17,17,20,.25);transition:transform .35s var(--ease)}
+.switch[aria-checked="true"]{background:var(--violet)}
+.switch[aria-checked="true"] .knob{transform:translateX(52px)}
+.switch:hover{filter:brightness(.97)}
+.tasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.task{background:#fff;border-radius:16px;padding:14px 18px;display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;transition:transform .4s var(--ease),opacity .4s;}
+.task .dot{width:12px;height:12px;border-radius:50%;background:var(--off);justify-self:center;transition:background .35s var(--ease),transform .35s var(--ease)}
+.task .what{font-weight:600}
+.task .how{font-size:14px;color:var(--muted);margin-top:2px}
+.task .time{font-weight:700;font-size:15px;color:var(--muted);white-space:nowrap;text-align:right}
+.task .after{display:none}
+.demo.on .task .dot{background:var(--violet);transform:scale(1.15)}
+.demo.on .task .before{display:none}
+.demo.on .task .after{display:block}
+.demo.on .task .time{color:var(--violet-deep)}
+.demo .foot{margin-top:16px;font-size:14px;color:var(--muted)}
+.demo .foot b{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+
+/* sections */
+section{padding:96px 0}
+h2{font-size:clamp(32px,4.2vw,52px);line-height:1.03;letter-spacing:-.03em;font-weight:800;margin:0 0 18px;max-width:18ch}
+.sub{color:var(--muted);font-size:19px;max-width:54ch;margin:0 0 48px}
+
+/* services: menu rows, not cards */
+.menu{border-top:3px solid var(--ink)}
+.row{display:grid;grid-template-columns:1fr 1.4fr;gap:32px;padding:34px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:3px solid var(--ink)}
+.row h3{margin:0;font-size:26px;letter-spacing:-.02em;line-height:1.15}
+.row p{margin:0 0 14px;color:var(--muted);font-size:17px;max-width:52ch}
+.flip{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;font-size:15px;max-width:52ch}
+.flip .b{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--off)}
+.flip .a{font-weight:600}
+.flip svg{width:22px;height:22px;flex:none}
+
+/* process: a track */
 .dark{background:var(--ink);color:#fff}
-.dark h2,.dark .sub{color:#fff}
-.dark .sub{color:#B8BCC6}
-.dark .card{background:#1C1D23}
-.dark .card p,.dark .card li{color:#B8BCC6}
-.dark .card .num{background:var(--violet)}
-.split{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
-.who li{margin:10px 0}
-.who ul{padding-left:20px;color:var(--muted);font-size:18px}
-.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center}
-.portrait{aspect-ratio:1;border-radius:24px;background:var(--fog);border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:500;text-align:center;padding:24px}
-.contact{background:var(--violet);color:#fff;border-radius:28px;padding:56px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
-.contact h2{color:#fff;margin:0 0 10px}
-.contact p{margin:0;color:#EEE8FF;font-size:18px}
-.contact .btn{background:#fff;color:var(--ink);border-color:#fff;width:100%}
-.contact .alt{margin-top:14px;font-size:15px;color:#EEE8FF;text-align:center}
+.dark h2{color:#fff} .dark .sub{color:#B9BDC7}
+.track{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;padding-top:34px}
+.track::before{content:"";position:absolute;left:0;right:0;top:12px;height:4px;border-radius:2px;background:#2C2E36}
+.track::after{content:"";position:absolute;left:0;top:4px;width:20px;height:20px;border-radius:50%;background:var(--violet);animation:slide 9s var(--ease) infinite}
+@keyframes slide{0%{left:0}30%{left:33%}60%{left:66%}90%,100%{left:calc(100% - 20px)}}
+.step h3{margin:0 0 8px;font-size:22px}
+.step h3 small{display:block;color:var(--violet);font-size:14px;font-weight:700;margin-bottom:6px}
+.step p{margin:0;color:#B9BDC7;font-size:16px}
+
+/* fit */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.fit > div{border-radius:24px;padding:32px}
+.fit .yes{background:var(--violet-soft)}
+.fit .no{background:var(--fog)}
+.fit h3{margin:0 0 14px;font-size:24px}
+.fit ul{margin:0;padding-left:0;list-style:none}
+.fit li{padding:9px 0;border-top:1px solid rgba(17,17,20,.08);font-size:17px}
+.fit li:first-child{border-top:0}
+
+/* about */
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.portrait{aspect-ratio:4/5;border-radius:28px;background:var(--fog);border:2px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:500;text-align:center;padding:24px}
+.about p{font-size:18px;color:var(--muted);max-width:52ch;margin:0 0 16px}
+.about p strong{color:var(--ink)}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.facts span{background:var(--fog);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500}
+
+/* contact */
+.contact{background:var(--violet);color:#fff;border-radius:32px;padding:64px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.contact h2{color:#fff;margin-bottom:12px}
+.contact p{margin:0;color:#F0EAFF;font-size:19px;max-width:40ch}
+.contact .btn{background:#fff;color:var(--ink);border-color:#fff;width:100%;min-height:58px;font-size:19px}
+.contact .alt{margin-top:14px;font-size:16px;color:#F0EAFF;text-align:center}
 .contact .alt a{color:#fff}
-footer{padding:40px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+
+footer{padding:40px 0 48px;color:var(--muted);font-size:15px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between}
 footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
-@media (max-width:900px){
-  .grid3,.steps{grid-template-columns:1fr 1fr}
-  .split,.about,.contact{grid-template-columns:1fr}
-  .contact{padding:36px}
+
+@media (max-width:960px){
+  .hero{grid-template-columns:1fr;gap:40px}
+  .track{grid-template-columns:1fr 1fr} .track::before,.track::after{display:none}
+  .row,.fit,.about,.contact{grid-template-columns:1fr}
+  .contact{padding:40px}
 }
 @media (max-width:640px){
   .nav ul{display:none}
-  .grid3,.steps{grid-template-columns:1fr}
-  .hero{padding:64px 0 48px}
+  .hero{padding:48px 0 40px}
   section{padding:64px 0}
+  .track{grid-template-columns:1fr}
+  .demo{padding:20px}
+  .task{grid-template-columns:20px 1fr;} .task .time{grid-column:2;text-align:left}
+  .contact{padding:32px;border-radius:24px}
 }
 </style>
 </head>
 <body id="top">
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="SwitchFlip home"><svg class="mark" viewBox="0 0 112 176" aria-hidden="true"><rect x="4" y="4" width="104" height="42" rx="21" fill="currentColor"/><circle cx="25" cy="25" r="15" fill="var(--knob-off)"/><rect x="4" y="54" width="104" height="42" rx="21" fill="currentColor"/><circle cx="87" cy="75" r="15" fill="var(--violet)"/><rect x="4" y="104" width="42" height="68" rx="21" fill="currentColor"/><circle cx="25" cy="151" r="15" fill="var(--violet)"/></svg><svg class="wordmark" viewBox="0 -71 463 97" aria-hidden="true"><path d="M28.5 1.1Q19.5 1.1 13.0 -1.5999999999999999Q6.5 -4.3 1.1 -10.100000000000001L12.4 -21.5Q16.1 -17.6 20.3 -15.55Q24.5 -13.5 29.8 -13.5Q34.300000000000004 -13.5 36.75 -15.05Q39.2 -16.6 39.2 -19.3Q39.2 -22.200000000000003 36.8 -24.0Q34.4 -25.8 30.6 -27.15Q26.8 -28.5 22.6 -30.05Q18.400000000000002 -31.6 14.600000000000001 -34.05Q10.8 -36.5 8.4 -40.45Q6.0 -44.400000000000006 6.0 -50.5Q6.0 -57.2 9.25 -62.050000000000004Q12.5 -66.9 18.3 -69.5Q24.1 -72.10000000000001 31.8 -72.10000000000001Q39.5 -72.10000000000001 46.0 -69.45Q52.5 -66.8 56.7 -62.300000000000004L45.300000000000004 -51.0Q42.1 -54.2 38.8 -55.800000000000004Q35.5 -57.400000000000006 31.6 -57.400000000000006Q27.900000000000002 -57.400000000000006 25.800000000000004 -56.150000000000006Q23.700000000000003 -54.900000000000006 23.700000000000003 -52.400000000000006Q23.700000000000003 -49.6 26.1 -47.95Q28.5 -46.300000000000004 32.25 -45.0Q36.0 -43.7 40.25 -42.150000000000006Q44.5 -40.6 48.25 -38.1Q52.0 -35.6 54.400000000000006 -31.5Q56.800000000000004 -27.400000000000002 56.800000000000004 -21.1Q56.800000000000004 -10.5 49.35000000000001 -4.7Q41.900000000000006 1.1 28.5 1.1Z M71.7 0.0 56.199999999999996 -48.900000000000006H73.0L79.9 -22.1L88.1 -48.900000000000006H103.6L111.80000000000001 -22.1L118.80000000000001 -48.900000000000006H135.6L120.1 0.0H104.4L95.9 -27.6L87.2 0.0Z M145.79999999999998 -54.6Q141.9 -54.6 139.3 -57.3Q136.7 -60.0 136.7 -63.900000000000006Q136.7 -67.8 139.3 -70.5Q141.9 -73.2 145.79999999999998 -73.2Q149.79999999999998 -73.2 152.39999999999998 -70.5Q155.0 -67.8 155.0 -63.900000000000006Q155.0 -60.0 152.39999999999998 -57.3Q149.79999999999998 -54.6 145.79999999999998 -54.6ZM137.1 0.0V-48.900000000000006H154.6V0.0Z M168.4 0.0V-34.4H157.6V-48.900000000000006H168.4V-69.10000000000001H185.8V-48.900000000000006H196.6V-34.4H185.8V0.0Z M223.1 1.1Q215.29999999999998 1.1 209.04999999999998 -2.2Q202.79999999999998 -5.5 199.2 -11.25Q195.6 -17.0 195.6 -24.400000000000002Q195.6 -31.8 199.25 -37.6Q202.89999999999998 -43.400000000000006 209.14999999999998 -46.75Q215.39999999999998 -50.1 223.29999999999998 -50.1Q234.6 -50.1 242.29999999999998 -42.5L231.29999999999998 -31.5Q228.29999999999998 -34.5 223.29999999999998 -34.5Q219.0 -34.5 216.14999999999998 -31.75Q213.29999999999998 -29.0 213.29999999999998 -24.5Q213.29999999999998 -20.0 216.2 -17.2Q219.1 -14.4 223.29999999999998 -14.4Q226.1 -14.4 228.1 -15.3Q230.1 -16.2 231.6 -17.900000000000002L242.7 -6.9Q238.5 -2.8000000000000003 233.8 -0.8500000000000001Q229.1 1.1 223.1 1.1Z M245.99999999999997 0.0V-72.9H263.4V-46.0Q268.4 -49.900000000000006 275.79999999999995 -49.900000000000006Q281.7 -49.900000000000006 286.0 -47.550000000000004Q290.29999999999995 -45.2 292.69999999999993 -41.05Q295.09999999999997 -36.9 295.09999999999997 -31.6V0.0H277.7V-27.6Q277.7 -31.0 275.65 -32.95Q273.59999999999997 -34.9 270.59999999999997 -34.9Q267.5 -34.9 265.45 -32.95Q263.4 -31.0 263.4 -27.6V0.0Z M302.5 0.0V-70.9H353.4V-55.800000000000004H320.4V-41.6H351.8V-26.5H320.4V0.0Z M358.5 0.0V-72.9H375.9V0.0Z M391.7 -54.6Q387.8 -54.6 385.20000000000005 -57.3Q382.6 -60.0 382.6 -63.900000000000006Q382.6 -67.8 385.20000000000005 -70.5Q387.8 -73.2 391.7 -73.2Q395.7 -73.2 398.29999999999995 -70.5Q400.9 -67.8 400.9 -63.900000000000006Q400.9 -60.0 398.29999999999995 -57.3Q395.7 -54.6 391.7 -54.6ZM383.0 0.0V-48.900000000000006H400.5V0.0Z M407.6 20.700000000000003V-48.900000000000006H425.0V-46.300000000000004Q427.4 -48.0 430.4 -48.95Q433.4 -49.900000000000006 436.7 -49.900000000000006Q443.8 -49.900000000000006 449.20000000000005 -46.60000000000001Q454.6 -43.300000000000004 457.65 -37.550000000000004Q460.7 -31.8 460.7 -24.400000000000002Q460.7 -17.1 457.65 -11.350000000000001Q454.6 -5.6000000000000005 449.20000000000005 -2.3000000000000003Q443.8 1.0 436.7 1.0Q429.8 1.0 424.6 -2.5V20.700000000000003ZM433.5 -14.5Q437.7 -14.5 440.4 -17.3Q443.1 -20.1 443.1 -24.5Q443.1 -28.8 440.4 -31.6Q437.7 -34.4 433.6 -34.4Q429.3 -34.4 426.65 -31.65Q424.0 -28.900000000000002 424.0 -24.5Q424.0 -20.1 426.65 -17.3Q429.3 -14.5 433.5 -14.5Z" fill="currentColor"/></svg></a>
+    <a class="logo" href="#top" aria-label="SwitchFlip home"><svg class="mark" viewBox="0 0 112 176" aria-hidden="true"><rect x="4" y="4" width="104" height="42" rx="21" fill="currentColor"/><circle class="k1" cx="25" cy="25" r="15" fill="var(--fog)"/><rect x="4" y="54" width="104" height="42" rx="21" fill="currentColor"/><circle class="k2" cx="87" cy="75" r="15" fill="var(--violet)"/><rect x="4" y="104" width="42" height="68" rx="21" fill="currentColor"/><circle class="k3" cx="25" cy="151" r="15" fill="var(--violet)"/></svg><svg class="wordmark" viewBox="0 -71 463 97" aria-hidden="true"><path d="M28.5 1.1Q19.5 1.1 13.0 -1.5999999999999999Q6.5 -4.3 1.1 -10.100000000000001L12.4 -21.5Q16.1 -17.6 20.3 -15.55Q24.5 -13.5 29.8 -13.5Q34.300000000000004 -13.5 36.75 -15.05Q39.2 -16.6 39.2 -19.3Q39.2 -22.200000000000003 36.8 -24.0Q34.4 -25.8 30.6 -27.15Q26.8 -28.5 22.6 -30.05Q18.400000000000002 -31.6 14.600000000000001 -34.05Q10.8 -36.5 8.4 -40.45Q6.0 -44.400000000000006 6.0 -50.5Q6.0 -57.2 9.25 -62.050000000000004Q12.5 -66.9 18.3 -69.5Q24.1 -72.10000000000001 31.8 -72.10000000000001Q39.5 -72.10000000000001 46.0 -69.45Q52.5 -66.8 56.7 -62.300000000000004L45.300000000000004 -51.0Q42.1 -54.2 38.8 -55.800000000000004Q35.5 -57.400000000000006 31.6 -57.400000000000006Q27.900000000000002 -57.400000000000006 25.800000000000004 -56.150000000000006Q23.700000000000003 -54.900000000000006 23.700000000000003 -52.400000000000006Q23.700000000000003 -49.6 26.1 -47.95Q28.5 -46.300000000000004 32.25 -45.0Q36.0 -43.7 40.25 -42.150000000000006Q44.5 -40.6 48.25 -38.1Q52.0 -35.6 54.400000000000006 -31.5Q56.800000000000004 -27.400000000000002 56.800000000000004 -21.1Q56.800000000000004 -10.5 49.35000000000001 -4.7Q41.900000000000006 1.1 28.5 1.1Z M71.7 0.0 56.199999999999996 -48.900000000000006H73.0L79.9 -22.1L88.1 -48.900000000000006H103.6L111.80000000000001 -22.1L118.80000000000001 -48.900000000000006H135.6L120.1 0.0H104.4L95.9 -27.6L87.2 0.0Z M145.79999999999998 -54.6Q141.9 -54.6 139.3 -57.3Q136.7 -60.0 136.7 -63.900000000000006Q136.7 -67.8 139.3 -70.5Q141.9 -73.2 145.79999999999998 -73.2Q149.79999999999998 -73.2 152.39999999999998 -70.5Q155.0 -67.8 155.0 -63.900000000000006Q155.0 -60.0 152.39999999999998 -57.3Q149.79999999999998 -54.6 145.79999999999998 -54.6ZM137.1 0.0V-48.900000000000006H154.6V0.0Z M168.4 0.0V-34.4H157.6V-48.900000000000006H168.4V-69.10000000000001H185.8V-48.900000000000006H196.6V-34.4H185.8V0.0Z M223.1 1.1Q215.29999999999998 1.1 209.04999999999998 -2.2Q202.79999999999998 -5.5 199.2 -11.25Q195.6 -17.0 195.6 -24.400000000000002Q195.6 -31.8 199.25 -37.6Q202.89999999999998 -43.400000000000006 209.14999999999998 -46.75Q215.39999999999998 -50.1 223.29999999999998 -50.1Q234.6 -50.1 242.29999999999998 -42.5L231.29999999999998 -31.5Q228.29999999999998 -34.5 223.29999999999998 -34.5Q219.0 -34.5 216.14999999999998 -31.75Q213.29999999999998 -29.0 213.29999999999998 -24.5Q213.29999999999998 -20.0 216.2 -17.2Q219.1 -14.4 223.29999999999998 -14.4Q226.1 -14.4 228.1 -15.3Q230.1 -16.2 231.6 -17.900000000000002L242.7 -6.9Q238.5 -2.8000000000000003 233.8 -0.8500000000000001Q229.1 1.1 223.1 1.1Z M245.99999999999997 0.0V-72.9H263.4V-46.0Q268.4 -49.900000000000006 275.79999999999995 -49.900000000000006Q281.7 -49.900000000000006 286.0 -47.550000000000004Q290.29999999999995 -45.2 292.69999999999993 -41.05Q295.09999999999997 -36.9 295.09999999999997 -31.6V0.0H277.7V-27.6Q277.7 -31.0 275.65 -32.95Q273.59999999999997 -34.9 270.59999999999997 -34.9Q267.5 -34.9 265.45 -32.95Q263.4 -31.0 263.4 -27.6V0.0Z M302.5 0.0V-70.9H353.4V-55.800000000000004H320.4V-41.6H351.8V-26.5H320.4V0.0Z M358.5 0.0V-72.9H375.9V0.0Z M391.7 -54.6Q387.8 -54.6 385.20000000000005 -57.3Q382.6 -60.0 382.6 -63.900000000000006Q382.6 -67.8 385.20000000000005 -70.5Q387.8 -73.2 391.7 -73.2Q395.7 -73.2 398.29999999999995 -70.5Q400.9 -67.8 400.9 -63.900000000000006Q400.9 -60.0 398.29999999999995 -57.3Q395.7 -54.6 391.7 -54.6ZM383.0 0.0V-48.900000000000006H400.5V0.0Z M407.6 20.700000000000003V-48.900000000000006H425.0V-46.300000000000004Q427.4 -48.0 430.4 -48.95Q433.4 -49.900000000000006 436.7 -49.900000000000006Q443.8 -49.900000000000006 449.20000000000005 -46.60000000000001Q454.6 -43.300000000000004 457.65 -37.550000000000004Q460.7 -31.8 460.7 -24.400000000000002Q460.7 -17.1 457.65 -11.350000000000001Q454.6 -5.6000000000000005 449.20000000000005 -2.3000000000000003Q443.8 1.0 436.7 1.0Q429.8 1.0 424.6 -2.5V20.700000000000003ZM433.5 -14.5Q437.7 -14.5 440.4 -17.3Q443.1 -20.1 443.1 -24.5Q443.1 -28.8 440.4 -31.6Q437.7 -34.4 433.6 -34.4Q429.3 -34.4 426.65 -31.65Q424.0 -28.900000000000002 424.0 -24.5Q424.0 -20.1 426.65 -17.3Q429.3 -14.5 433.5 -14.5Z" fill="currentColor"/></svg></a>
     <ul>
-      <li><a href="#what">What we do</a></li>
-      <li><a href="#how">How we work</a></li>
-      <li><a href="#who">Who it's for</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#build">What we build</a></li>
+      <li><a href="#how">How it goes</a></li>
+      <li><a href="#fit">Good fit?</a></li>
+      <li><a href="#jake">Jake</a></li>
     </ul>
-    <a class="btn" href="#contact">Book a call</a>
+    <a class="btn" href="https://calendar.app.google/6Db1NM3BfXZGpG2U9">Book a call</a>
   </div>
 </header>
 
 <main>
 <div class="wrap hero">
-  <span class="eyebrow"><i></i>Applied AI, Denver, Colorado</span>
-  <h1>Flip the switch on AI for your <em>finance and ops</em> teams.</h1>
-  <p class="lede">SwitchFlip builds working AI systems for consumer brands, on Anthropic's Claude. We start with one workflow your team is tired of doing by hand, ship it in weeks, and hand it over so it keeps running without us.</p>
-  <div class="cta-row">
-    <a class="btn violet" href="#contact">Book a 30-minute call</a>
-    <a class="btn ghost" href="#what">See what we build</a>
-    <small>No pitch deck. We'll just talk about what's slow.</small>
+  <div>
+    <h1>Flip the switch on the work nobody should do by hand.</h1>
+    <p class="lede">SwitchFlip is a small applied-AI shop in Denver. We build working AI systems for finance and ops teams at consumer brands, on Claude. One workflow at a time, in weeks, then it's yours.</p>
+    <div class="cta-row">
+      <a class="btn violet" href="https://calendar.app.google/6Db1NM3BfXZGpG2U9">Book a 30-minute call</a>
+      <span class="note">No deck, no pitch. Bring the thing that's slow.</span>
+    </div>
+  </div>
+
+  <div class="demo" id="demo">
+    <div class="demo-top">
+      <div class="label">A Tuesday at a growing brand, switch <span id="state">off</span></div>
+      <button class="switch" id="switch" role="switch" aria-checked="false" aria-label="Flip the switch to see the after">
+        <span class="knob"></span>
+      </button>
+    </div>
+    <ul class="tasks">
+      <li class="task"><span class="dot"></span><div><div class="what">New customer credit app</div><div class="how before">Someone retypes the PDF into the ERP, emails three references, waits.</div><div class="how after">Read, checked, risk-flagged, drafted for a human to approve.</div></div><div class="time"><span class="before">45 min each</span><span class="after">4 min each</span></div></li>
+      <li class="task"><span class="dot"></span><div><div class="what">Retailer deduction</div><div class="how before">Open the claim, hunt for the promo, build a dispute from scratch.</div><div class="how after">Matched to the promo and shipment, dispute packet drafted.</div></div><div class="time"><span class="before">2 hrs each</span><span class="after">10 min each</span></div></li>
+      <li class="task"><span class="dot"></span><div><div class="what">New item setup form</div><div class="how before">Copy specs from five spreadsheets into the buyer's portal.</div><div class="how after">Pulled from your source of truth, pre-filled, reviewed.</div></div><div class="time"><span class="before">30 min each</span><span class="after">3 min each</span></div></li>
+      <li class="task"><span class="dot"></span><div><div class="what">Monday sell-through report</div><div class="how before">Download six portal exports, clean, paste, send.</div><div class="how after">Pulled, cleaned, summarized, in your inbox at 7am.</div></div><div class="time"><span class="before">Every Monday, 2 hrs</span><span class="after">Done before coffee</span></div></li>
+    </ul>
+    <p class="foot">Illustrative times. Yours will be different, and we'll measure them before and after. <b>Flip it back if you miss the old way.</b></p>
   </div>
 </div>
 
-<div class="strip"><div class="wrap">
-  <span>Built on Claude by Anthropic</span>
-  <span>Anthropic-certified practitioners</span>
-  <span>Fixed-scope projects, fixed price</span>
-  <span>Your data stays in your systems</span>
-</div></div>
-
-<section id="what"><div class="wrap">
-  <h2>We build the AI that does the work nobody wants to.</h2>
-  <p class="sub">Not strategy decks. Not a chatbot bolted onto your website. Real systems that read documents, make decisions inside the rules you set, and leave a trail your controller can audit.</p>
-  <div class="grid3">
-    <div class="card">
-      <h3>Customer onboarding and credit</h3>
-      <p>New account intake, credit applications, reference checks, and limit recommendations, drafted for a human to approve.</p>
-      <ul><li>Trade credit apps read and summarized</li><li>Risk flags surfaced, not buried</li><li>Decisions logged with reasons</li></ul>
+<section id="build"><div class="wrap">
+  <h2>What we build</h2>
+  <p class="sub">Real systems that read documents, make decisions inside rules you set, and leave a trail your controller can audit. Here's the menu. Most clients start with one.</p>
+  <div class="menu">
+    <div class="row">
+      <h3>Customer onboarding and trade credit</h3>
+      <div>
+        <p>Credit apps, account setup, reference checks, and limit recommendations. The system does the reading and the first draft; your credit manager makes the call.</p>
+        <div class="flip"><span class="b">A PDF and a prayer</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="a">A one-page summary with a recommendation and the reasons</span></div>
+      </div>
     </div>
-    <div class="card">
+    <div class="row">
       <h3>Deductions and chargebacks</h3>
-      <p>Retailer claims matched to promos and shipments, disputes drafted, and the ones worth fighting sorted from the ones that aren't.</p>
-      <ul><li>Walmart, Target, Kroger, UNFI, KeHE formats</li><li>Dispute packets ready to send</li><li>Recovered dollars tracked</li></ul>
+      <div>
+        <p>Retailer claims matched to promos and shipments, disputes drafted, and the ones worth fighting sorted from the ones that aren't. Works with the formats Walmart, Target, Kroger, UNFI, and KeHE actually send.</p>
+        <div class="flip"><span class="b">A backlog nobody wants to open</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="a">A queue of ready-to-send disputes, biggest dollars first</span></div>
+      </div>
     </div>
-    <div class="card">
-      <h3>Team enablement and safe rollout</h3>
-      <p>Get your whole team using Claude well, with guardrails. We set up the workspace, the rules, and the training so it's useful on day one and safe on day 100.</p>
-      <ul><li>Workspace setup and access controls</li><li>Hands-on training for finance and ops</li><li>Written policy your CFO will sign</li></ul>
+    <div class="row">
+      <h3>Retailer and distributor data</h3>
+      <div>
+        <p>Portal exports and broker reports turned into the weekly numbers your sales lead actually reads. Sell-through, fill rate, out-of-stocks, by account.</p>
+        <div class="flip"><span class="b">Six tabs and a Monday morning</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="a">One summary, same time every week, with the changes called out</span></div>
+      </div>
+    </div>
+    <div class="row">
+      <h3>Your team, actually using Claude</h3>
+      <div>
+        <p>Workspace setup, access rules, and hands-on training for finance and ops people. Plus a written AI policy your CFO will sign, so it's useful on day one and safe on day 100.</p>
+        <div class="flip"><span class="b">Two people quietly using ChatGPT on their phones</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="a">The whole team on one secure setup, with rules everyone knows</span></div>
+      </div>
     </div>
   </div>
 </div></section>
 
 <section id="how" class="dark"><div class="wrap">
-  <h2>How we work</h2>
-  <p class="sub">We don't shove you in one direction. We work on what you actually want sprucing up, and then we'll throw out a few ideas you haven't thought of.</p>
-  <div class="steps">
-    <div class="card"><div class="num">1</div><h3>Listen</h3><p>A 30-minute call. You tell us what's slow, manual, or error-prone. We tell you what's realistic.</p></div>
-    <div class="card"><div class="num">2</div><h3>Pick one workflow</h3><p>We scope a single, specific process with a clear before and after. Fixed price, fixed timeline.</p></div>
-    <div class="card"><div class="num">3</div><h3>Build in weeks</h3><p>We build it inside your systems, with your people watching. You see it working before you pay the balance.</p></div>
-    <div class="card"><div class="num">4</div><h3>Hand it over</h3><p>Documentation, training, and a runbook. It's yours. If you want us around after, that's a separate conversation.</p></div>
+  <h2>How it goes</h2>
+  <p class="sub">We don't push you toward a direction. We work on what you actually want fixed, then throw out a couple of ideas you haven't thought of. In that order.</p>
+  <div class="track">
+    <div class="step"><h3><small>Week 0</small>A call</h3><p>Thirty minutes. You tell us what's slow. We tell you what's realistic and what isn't. Sometimes the answer is "don't use AI for that."</p></div>
+    <div class="step"><h3><small>Week 1</small>One workflow, scoped</h3><p>A single process with a clear before and after, a fixed price, and a fixed date. We measure the before so the after means something.</p></div>
+    <div class="step"><h3><small>Weeks 2 to 5</small>Built with you watching</h3><p>Inside your systems, with your people in the loop. You see it running on real work before you pay the balance.</p></div>
+    <div class="step"><h3><small>Week 6</small>Handed over</h3><p>Docs, training, a runbook, and the keys. It's yours. If you want us around after that, we'll talk about it then.</p></div>
   </div>
 </div></section>
 
-<section id="who"><div class="wrap split">
-  <div>
-    <h2>Who it's for</h2>
-    <p class="sub">Consumer brands with real volume and a small team, usually somewhere between the first big retail account and the first hundred million in revenue.</p>
-  </div>
-  <div class="who">
-    <ul>
-      <li>Food, beverage, supplement, and outdoor brands in the Rocky Mountain and West Coast corridor</li>
-      <li>Finance and operations leaders who own the back office: controllers, VPs of ops, CFOs</li>
-      <li>Teams already on NetSuite, Salesforce, or a modern ERP, drowning in the spreadsheets in between</li>
-      <li>Anyone who's been told "AI will fix that" and is still waiting</li>
-    </ul>
+<section id="fit"><div class="wrap">
+  <h2>Is this a fit?</h2>
+  <p class="sub">We'd rather tell you now than waste your Tuesday.</p>
+  <div class="fit">
+    <div class="yes">
+      <h3>Probably, if you're</h3>
+      <ul>
+        <li>A food, beverage, supplement, or outdoor brand somewhere between your first big retail account and your first $100M</li>
+        <li>The person who owns the back office: controller, VP of ops, CFO, or the founder still doing all three</li>
+        <li>Running NetSuite, Salesforce, or a real ERP, and drowning in the spreadsheets in between</li>
+        <li>Tired of being told "AI will fix that" by people who can't show you one thing it fixed</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h3>Probably not, if you want</h3>
+      <ul>
+        <li>An AI strategy deck</li>
+        <li>A chatbot on your website</li>
+        <li>Someone to replace your team instead of unburying them</li>
+        <li>A 12-month enterprise transformation with a steering committee</li>
+      </ul>
+    </div>
   </div>
 </div></section>
 
-<section id="about" class="band"><div class="wrap about">
-  <div class="portrait">[Add a photo of Jake here]</div>
+<section id="jake"><div class="wrap about">
+  <div class="portrait">[Jake's photo goes here]</div>
   <div>
-    <h2>Run by someone who's sold into your world.</h2>
-    <p class="sub" style="margin-bottom:16px">SwitchFlip is led by Jake Nelson, who spent eight years selling software to consumer brands and mid-market companies across the West, including time inside the trade credit and customer onboarding space. He's seen the spreadsheets. He's watched the deductions pile up. He started SwitchFlip to fix the parts of the back office that software companies keep promising to fix and never do.</p>
-    <p class="sub" style="margin-bottom:0">The team is small on purpose: Anthropic-certified applied AI practitioners, no account managers, no layers. When you call, you get the people doing the work.</p>
+    <h2>Hi, I'm Jake.</h2>
+    <p>I spent eight years selling software to consumer brands and mid-market companies across the West, including a stretch inside the trade credit and customer onboarding world. <strong>I've watched the deductions pile up and the credit apps get retyped.</strong> I started SwitchFlip to fix the parts of the back office that software companies keep promising to fix and never do.</p>
+    <p>SwitchFlip is small on purpose. Anthropic-certified practitioners, no account managers, no layers. When you call, you get the people doing the work.</p>
+    <div class="facts">
+      <span>Denver, Colorado</span>
+      <span>Fly fishes when the backlog is clear</span>
+      <span>Will answer your email himself</span>
+      <span>Has strong opinions about deduction codes</span>
+    </div>
   </div>
 </div></section>
 
@@ -184,7 +287,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
       <p>Thirty minutes, no pitch. If we can't help, we'll say so and point you somewhere that can.</p>
     </div>
     <div>
-      <a class="btn" href="[YOUR BOOKING LINK]">Book a call</a>
+      <a class="btn" href="https://calendar.app.google/6Db1NM3BfXZGpG2U9">Pick a time with Jake</a>
       <div class="alt">or email <a href="mailto:jake@switchflip.ai">jake@switchflip.ai</a></div>
     </div>
   </div>
@@ -192,9 +295,19 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 </main>
 
 <footer><div class="wrap">
-  <a class="logo" href="#top" aria-label="SwitchFlip home"><svg class="mark" viewBox="0 0 112 176" aria-hidden="true"><rect x="4" y="4" width="104" height="42" rx="21" fill="currentColor"/><circle cx="25" cy="25" r="15" fill="var(--knob-off)"/><rect x="4" y="54" width="104" height="42" rx="21" fill="currentColor"/><circle cx="87" cy="75" r="15" fill="var(--violet)"/><rect x="4" y="104" width="42" height="68" rx="21" fill="currentColor"/><circle cx="25" cy="151" r="15" fill="var(--violet)"/></svg><svg class="wordmark" viewBox="0 -71 463 97" aria-hidden="true"><path d="M28.5 1.1Q19.5 1.1 13.0 -1.5999999999999999Q6.5 -4.3 1.1 -10.100000000000001L12.4 -21.5Q16.1 -17.6 20.3 -15.55Q24.5 -13.5 29.8 -13.5Q34.300000000000004 -13.5 36.75 -15.05Q39.2 -16.6 39.2 -19.3Q39.2 -22.200000000000003 36.8 -24.0Q34.4 -25.8 30.6 -27.15Q26.8 -28.5 22.6 -30.05Q18.400000000000002 -31.6 14.600000000000001 -34.05Q10.8 -36.5 8.4 -40.45Q6.0 -44.400000000000006 6.0 -50.5Q6.0 -57.2 9.25 -62.050000000000004Q12.5 -66.9 18.3 -69.5Q24.1 -72.10000000000001 31.8 -72.10000000000001Q39.5 -72.10000000000001 46.0 -69.45Q52.5 -66.8 56.7 -62.300000000000004L45.300000000000004 -51.0Q42.1 -54.2 38.8 -55.800000000000004Q35.5 -57.400000000000006 31.6 -57.400000000000006Q27.900000000000002 -57.400000000000006 25.800000000000004 -56.150000000000006Q23.700000000000003 -54.900000000000006 23.700000000000003 -52.400000000000006Q23.700000000000003 -49.6 26.1 -47.95Q28.5 -46.300000000000004 32.25 -45.0Q36.0 -43.7 40.25 -42.150000000000006Q44.5 -40.6 48.25 -38.1Q52.0 -35.6 54.400000000000006 -31.5Q56.800000000000004 -27.400000000000002 56.800000000000004 -21.1Q56.800000000000004 -10.5 49.35000000000001 -4.7Q41.900000000000006 1.1 28.5 1.1Z M71.7 0.0 56.199999999999996 -48.900000000000006H73.0L79.9 -22.1L88.1 -48.900000000000006H103.6L111.80000000000001 -22.1L118.80000000000001 -48.900000000000006H135.6L120.1 0.0H104.4L95.9 -27.6L87.2 0.0Z M145.79999999999998 -54.6Q141.9 -54.6 139.3 -57.3Q136.7 -60.0 136.7 -63.900000000000006Q136.7 -67.8 139.3 -70.5Q141.9 -73.2 145.79999999999998 -73.2Q149.79999999999998 -73.2 152.39999999999998 -70.5Q155.0 -67.8 155.0 -63.900000000000006Q155.0 -60.0 152.39999999999998 -57.3Q149.79999999999998 -54.6 145.79999999999998 -54.6ZM137.1 0.0V-48.900000000000006H154.6V0.0Z M168.4 0.0V-34.4H157.6V-48.900000000000006H168.4V-69.10000000000001H185.8V-48.900000000000006H196.6V-34.4H185.8V0.0Z M223.1 1.1Q215.29999999999998 1.1 209.04999999999998 -2.2Q202.79999999999998 -5.5 199.2 -11.25Q195.6 -17.0 195.6 -24.400000000000002Q195.6 -31.8 199.25 -37.6Q202.89999999999998 -43.400000000000006 209.14999999999998 -46.75Q215.39999999999998 -50.1 223.29999999999998 -50.1Q234.6 -50.1 242.29999999999998 -42.5L231.29999999999998 -31.5Q228.29999999999998 -34.5 223.29999999999998 -34.5Q219.0 -34.5 216.14999999999998 -31.75Q213.29999999999998 -29.0 213.29999999999998 -24.5Q213.29999999999998 -20.0 216.2 -17.2Q219.1 -14.4 223.29999999999998 -14.4Q226.1 -14.4 228.1 -15.3Q230.1 -16.2 231.6 -17.900000000000002L242.7 -6.9Q238.5 -2.8000000000000003 233.8 -0.8500000000000001Q229.1 1.1 223.1 1.1Z M245.99999999999997 0.0V-72.9H263.4V-46.0Q268.4 -49.900000000000006 275.79999999999995 -49.900000000000006Q281.7 -49.900000000000006 286.0 -47.550000000000004Q290.29999999999995 -45.2 292.69999999999993 -41.05Q295.09999999999997 -36.9 295.09999999999997 -31.6V0.0H277.7V-27.6Q277.7 -31.0 275.65 -32.95Q273.59999999999997 -34.9 270.59999999999997 -34.9Q267.5 -34.9 265.45 -32.95Q263.4 -31.0 263.4 -27.6V0.0Z M302.5 0.0V-70.9H353.4V-55.800000000000004H320.4V-41.6H351.8V-26.5H320.4V0.0Z M358.5 0.0V-72.9H375.9V0.0Z M391.7 -54.6Q387.8 -54.6 385.20000000000005 -57.3Q382.6 -60.0 382.6 -63.900000000000006Q382.6 -67.8 385.20000000000005 -70.5Q387.8 -73.2 391.7 -73.2Q395.7 -73.2 398.29999999999995 -70.5Q400.9 -67.8 400.9 -63.900000000000006Q400.9 -60.0 398.29999999999995 -57.3Q395.7 -54.6 391.7 -54.6ZM383.0 0.0V-48.900000000000006H400.5V0.0Z M407.6 20.700000000000003V-48.900000000000006H425.0V-46.300000000000004Q427.4 -48.0 430.4 -48.95Q433.4 -49.900000000000006 436.7 -49.900000000000006Q443.8 -49.900000000000006 449.20000000000005 -46.60000000000001Q454.6 -43.300000000000004 457.65 -37.550000000000004Q460.7 -31.8 460.7 -24.400000000000002Q460.7 -17.1 457.65 -11.350000000000001Q454.6 -5.6000000000000005 449.20000000000005 -2.3000000000000003Q443.8 1.0 436.7 1.0Q429.8 1.0 424.6 -2.5V20.700000000000003ZM433.5 -14.5Q437.7 -14.5 440.4 -17.3Q443.1 -20.1 443.1 -24.5Q443.1 -28.8 440.4 -31.6Q437.7 -34.4 433.6 -34.4Q429.3 -34.4 426.65 -31.65Q424.0 -28.900000000000002 424.0 -24.5Q424.0 -20.1 426.65 -17.3Q429.3 -14.5 433.5 -14.5Z" fill="currentColor"/></svg></a>
-  <span>SwitchFlip LLC · Denver, Colorado · <a href="mailto:jake@switchflip.ai">jake@switchflip.ai</a></span>
+  <a class="logo" href="#top" aria-label="SwitchFlip home"><svg class="mark" viewBox="0 0 112 176" aria-hidden="true"><rect x="4" y="4" width="104" height="42" rx="21" fill="currentColor"/><circle class="k1" cx="25" cy="25" r="15" fill="var(--fog)"/><rect x="4" y="54" width="104" height="42" rx="21" fill="currentColor"/><circle class="k2" cx="87" cy="75" r="15" fill="var(--violet)"/><rect x="4" y="104" width="42" height="68" rx="21" fill="currentColor"/><circle class="k3" cx="25" cy="151" r="15" fill="var(--violet)"/></svg><svg class="wordmark" viewBox="0 -71 463 97" aria-hidden="true"><path d="M28.5 1.1Q19.5 1.1 13.0 -1.5999999999999999Q6.5 -4.3 1.1 -10.100000000000001L12.4 -21.5Q16.1 -17.6 20.3 -15.55Q24.5 -13.5 29.8 -13.5Q34.300000000000004 -13.5 36.75 -15.05Q39.2 -16.6 39.2 -19.3Q39.2 -22.200000000000003 36.8 -24.0Q34.4 -25.8 30.6 -27.15Q26.8 -28.5 22.6 -30.05Q18.400000000000002 -31.6 14.600000000000001 -34.05Q10.8 -36.5 8.4 -40.45Q6.0 -44.400000000000006 6.0 -50.5Q6.0 -57.2 9.25 -62.050000000000004Q12.5 -66.9 18.3 -69.5Q24.1 -72.10000000000001 31.8 -72.10000000000001Q39.5 -72.10000000000001 46.0 -69.45Q52.5 -66.8 56.7 -62.300000000000004L45.300000000000004 -51.0Q42.1 -54.2 38.8 -55.800000000000004Q35.5 -57.400000000000006 31.6 -57.400000000000006Q27.900000000000002 -57.400000000000006 25.800000000000004 -56.150000000000006Q23.700000000000003 -54.900000000000006 23.700000000000003 -52.400000000000006Q23.700000000000003 -49.6 26.1 -47.95Q28.5 -46.300000000000004 32.25 -45.0Q36.0 -43.7 40.25 -42.150000000000006Q44.5 -40.6 48.25 -38.1Q52.0 -35.6 54.400000000000006 -31.5Q56.800000000000004 -27.400000000000002 56.800000000000004 -21.1Q56.800000000000004 -10.5 49.35000000000001 -4.7Q41.900000000000006 1.1 28.5 1.1Z M71.7 0.0 56.199999999999996 -48.900000000000006H73.0L79.9 -22.1L88.1 -48.900000000000006H103.6L111.80000000000001 -22.1L118.80000000000001 -48.900000000000006H135.6L120.1 0.0H104.4L95.9 -27.6L87.2 0.0Z M145.79999999999998 -54.6Q141.9 -54.6 139.3 -57.3Q136.7 -60.0 136.7 -63.900000000000006Q136.7 -67.8 139.3 -70.5Q141.9 -73.2 145.79999999999998 -73.2Q149.79999999999998 -73.2 152.39999999999998 -70.5Q155.0 -67.8 155.0 -63.900000000000006Q155.0 -60.0 152.39999999999998 -57.3Q149.79999999999998 -54.6 145.79999999999998 -54.6ZM137.1 0.0V-48.900000000000006H154.6V0.0Z M168.4 0.0V-34.4H157.6V-48.900000000000006H168.4V-69.10000000000001H185.8V-48.900000000000006H196.6V-34.4H185.8V0.0Z M223.1 1.1Q215.29999999999998 1.1 209.04999999999998 -2.2Q202.79999999999998 -5.5 199.2 -11.25Q195.6 -17.0 195.6 -24.400000000000002Q195.6 -31.8 199.25 -37.6Q202.89999999999998 -43.400000000000006 209.14999999999998 -46.75Q215.39999999999998 -50.1 223.29999999999998 -50.1Q234.6 -50.1 242.29999999999998 -42.5L231.29999999999998 -31.5Q228.29999999999998 -34.5 223.29999999999998 -34.5Q219.0 -34.5 216.14999999999998 -31.75Q213.29999999999998 -29.0 213.29999999999998 -24.5Q213.29999999999998 -20.0 216.2 -17.2Q219.1 -14.4 223.29999999999998 -14.4Q226.1 -14.4 228.1 -15.3Q230.1 -16.2 231.6 -17.900000000000002L242.7 -6.9Q238.5 -2.8000000000000003 233.8 -0.8500000000000001Q229.1 1.1 223.1 1.1Z M245.99999999999997 0.0V-72.9H263.4V-46.0Q268.4 -49.900000000000006 275.79999999999995 -49.900000000000006Q281.7 -49.900000000000006 286.0 -47.550000000000004Q290.29999999999995 -45.2 292.69999999999993 -41.05Q295.09999999999997 -36.9 295.09999999999997 -31.6V0.0H277.7V-27.6Q277.7 -31.0 275.65 -32.95Q273.59999999999997 -34.9 270.59999999999997 -34.9Q267.5 -34.9 265.45 -32.95Q263.4 -31.0 263.4 -27.6V0.0Z M302.5 0.0V-70.9H353.4V-55.800000000000004H320.4V-41.6H351.8V-26.5H320.4V0.0Z M358.5 0.0V-72.9H375.9V0.0Z M391.7 -54.6Q387.8 -54.6 385.20000000000005 -57.3Q382.6 -60.0 382.6 -63.900000000000006Q382.6 -67.8 385.20000000000005 -70.5Q387.8 -73.2 391.7 -73.2Q395.7 -73.2 398.29999999999995 -70.5Q400.9 -67.8 400.9 -63.900000000000006Q400.9 -60.0 398.29999999999995 -57.3Q395.7 -54.6 391.7 -54.6ZM383.0 0.0V-48.900000000000006H400.5V0.0Z M407.6 20.700000000000003V-48.900000000000006H425.0V-46.300000000000004Q427.4 -48.0 430.4 -48.95Q433.4 -49.900000000000006 436.7 -49.900000000000006Q443.8 -49.900000000000006 449.20000000000005 -46.60000000000001Q454.6 -43.300000000000004 457.65 -37.550000000000004Q460.7 -31.8 460.7 -24.400000000000002Q460.7 -17.1 457.65 -11.350000000000001Q454.6 -5.6000000000000005 449.20000000000005 -2.3000000000000003Q443.8 1.0 436.7 1.0Q429.8 1.0 424.6 -2.5V20.700000000000003ZM433.5 -14.5Q437.7 -14.5 440.4 -17.3Q443.1 -20.1 443.1 -24.5Q443.1 -28.8 440.4 -31.6Q437.7 -34.4 433.6 -34.4Q429.3 -34.4 426.65 -31.65Q424.0 -28.900000000000002 424.0 -24.5Q424.0 -20.1 426.65 -17.3Q429.3 -14.5 433.5 -14.5Z" fill="currentColor"/></svg></a>
+  <span>SwitchFlip LLC, Denver. Built on Claude. Hand-coded, like the good stuff.</span>
   <span>© 2026 SwitchFlip LLC</span>
 </div></footer>
+
+<script>
+(function(){
+  var demo=document.getElementById('demo'), sw=document.getElementById('switch'), st=document.getElementById('state');
+  function set(on){ sw.setAttribute('aria-checked', on?'true':'false'); demo.classList.toggle('on', on); st.textContent = on?'on':'off'; }
+  sw.addEventListener('click', function(){ set(sw.getAttribute('aria-checked')!=='true'); });
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ set(true); } else { setTimeout(function(){ if(sw.getAttribute('aria-checked')!=='true') set(true); }, 1600); }
+})();
+</script>
 </body>
 </html>
