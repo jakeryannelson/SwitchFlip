@@ -93,14 +93,21 @@ h2{font-size:clamp(32px,4.2vw,52px);line-height:1.03;letter-spacing:-.03em;font-
 .row h3{margin:0;font-size:28px;letter-spacing:-.02em;line-height:1.15}
 .row h3 small{display:block;color:var(--violet);font-size:14px;font-weight:700;margin-bottom:8px}
 .industries{background:var(--fog)}
-.industries{padding:40px 0;overflow:hidden}
-.industries .ind-note{margin:0 0 24px;font-size:18px;color:var(--muted);max-width:60ch}
-.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.marquee-track{display:flex;gap:14px;list-style:none;margin:0;padding:0;width:max-content;animation:marquee 48s linear infinite}
-.marquee:hover .marquee-track{animation-play-state:paused}
-.marquee-track li{flex:none;background:#fff;border:1px solid var(--line);border-radius:999px;padding:12px 22px;font-size:clamp(17px,1.6vw,21px);font-weight:700;letter-spacing:-.01em;white-space:nowrap}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:auto}.marquee{mask-image:none;-webkit-mask-image:none}}
+.industries{padding:56px 0 64px;overflow:hidden}
+.industries .ind-note{margin:0 auto 28px;font-size:18px;color:var(--muted);max-width:60ch;text-align:center}
+.cf{position:relative;height:300px;perspective:1400px;outline:none}
+.cf:focus-visible{outline:3px solid var(--violet);outline-offset:-3px;border-radius:24px}
+.cf-track{list-style:none;margin:0;padding:0;position:absolute;inset:0;transform-style:preserve-3d}
+.cf-card{position:absolute;left:50%;top:50%;width:340px;height:240px;margin:-120px 0 0 -170px;border-radius:24px;background-size:cover;background-position:center;background-color:var(--fog);box-shadow:0 20px 50px rgba(17,17,20,.18);overflow:hidden;cursor:pointer;transition:transform .6s var(--ease),opacity .6s var(--ease),filter .6s var(--ease);will-change:transform;opacity:0;pointer-events:none}
+.cf-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,20,0) 40%,rgba(17,17,20,.78) 100%)}
+.cf-card span{position:absolute;left:22px;bottom:18px;color:#fff;font-weight:800;font-size:24px;letter-spacing:-.02em;z-index:1}
+.cf-card span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--violet);margin-right:10px;vertical-align:2px}
+.cf-card.is-active{box-shadow:0 30px 70px rgba(139,92,246,.4);cursor:default}
+.cf-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:48px;height:48px;border-radius:50%;border:0;background:#fff;color:var(--ink);box-shadow:0 6px 18px rgba(17,17,20,.15);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.cf-btn svg{width:22px;height:22px}
+.cf-btn.prev{left:max(16px,calc(50% - 560px))} .cf-btn.next{right:max(16px,calc(50% - 560px))}
+.cf-btn:hover{background:var(--violet);color:#fff}
+@media (max-width:760px){.cf{height:240px}.cf-card{width:260px;height:190px;margin:-95px 0 0 -130px}.cf-card span{font-size:20px}}
 .row p{margin:0 0 14px;color:var(--muted);font-size:17px;max-width:52ch}
 .flip{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;font-size:15px;max-width:52ch}
 .flip .b{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--off)}
@@ -243,7 +250,12 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 
 <div class="industries" aria-label="Industries we work with">
   <div class="wrap"><p class="ind-note">Who we work with. Two people or five hundred. The back office looks the same everywhere, and so does the fix.</p></div>
-  <div class="marquee"><ul class="marquee-track"><li>Retail</li><li>Manufacturing</li><li>Software</li><li>Hospitality</li><li>Residential real estate</li><li>Commercial real estate</li><li>Professional services</li><li>Healthcare offices</li><li>Trades</li><li>Restaurants</li><li>E-commerce</li><li>Logistics</li><li>Nonprofits</li><li>Mom-and-pop shops</li><li>Small business</li><li>Mid-market</li><li>Retail</li><li>Manufacturing</li><li>Software</li><li>Hospitality</li><li>Residential real estate</li><li>Commercial real estate</li><li>Professional services</li><li>Healthcare offices</li><li>Trades</li><li>Restaurants</li><li>E-commerce</li><li>Logistics</li><li>Nonprofits</li><li>Mom-and-pop shops</li><li>Small business</li><li>Mid-market</li></ul></div>
+  <div class="cf" id="cf" tabindex="0" aria-roledescription="carousel" aria-label="Industries">
+    <button class="cf-btn prev" id="cfPrev" aria-label="Previous industry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <ul class="cf-track" id="cfTrack"><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1771033834141-023d630b3965?w=900&h=640&fit=crop&q=75&auto=format)"><span>Retail</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1565954786194-d22abeaac3ae?w=900&h=640&fit=crop&q=75&auto=format)"><span>Manufacturing</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1551434678-e076c223a692?w=900&h=640&fit=crop&q=75&auto=format)"><span>Software</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1656533391150-93d586a9f6f9?w=900&h=640&fit=crop&q=75&auto=format)"><span>Hospitality</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&h=640&fit=crop&q=75&auto=format)"><span>Real estate</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1606836591695-4d58a73eba1e?w=900&h=640&fit=crop&q=75&auto=format)"><span>Professional services</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&h=640&fit=crop&q=75&auto=format)"><span>Healthcare</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=900&h=640&fit=crop&q=75&auto=format)"><span>Trades</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?w=900&h=640&fit=crop&q=75&auto=format)"><span>Restaurants</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1648747067192-790595bc6d5e?w=900&h=640&fit=crop&q=75&auto=format)"><span>E-commerce</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1689942010216-dc412bb1e7a9?w=900&h=640&fit=crop&q=75&auto=format)"><span>Logistics</span></li><li class="cf-card" style="background-image:url(https://images.unsplash.com/photo-1593113616828-6f22bca04804?w=900&h=640&fit=crop&q=75&auto=format)"><span>Nonprofits</span></li></ul>
+    <button class="cf-btn next" id="cfNext" aria-label="Next industry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
 </div>
 
 
@@ -277,9 +289,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
       <ul>
         <li>A strategy deck about AI. We build things, we don't write about them.</li>
         <li>A chatbot bolted onto your website. It won't fix the back office.</li>
-        <li>To cut staff. We unbury your people, we don't replace them.</li>
         <li>A six-figure, year-long transformation with a steering committee. Wrong firm.</li>
-        <li>Someone to run your whole business with AI. Pick one job. We'll do that one well.</li>
       </ul>
     </div>
   </div>
@@ -318,7 +328,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 <footer><div class="wrap">
   <a class="logo" href="#top" aria-label="SwitchFlip home"><svg class="mark" viewBox="0 0 112 176" aria-hidden="true"><rect x="4" y="4" width="104" height="42" rx="21" fill="currentColor"/><circle class="k1" cx="25" cy="25" r="15" fill="var(--fog)"/><rect x="4" y="54" width="104" height="42" rx="21" fill="currentColor"/><circle class="k2" cx="87" cy="75" r="15" fill="var(--violet)"/><rect x="4" y="104" width="42" height="68" rx="21" fill="currentColor"/><circle class="k3" cx="25" cy="151" r="15" fill="var(--violet)"/></svg><svg class="wordmark" viewBox="0 -71 463 97" aria-hidden="true"><path d="M28.5 1.1Q19.5 1.1 13.0 -1.5999999999999999Q6.5 -4.3 1.1 -10.100000000000001L12.4 -21.5Q16.1 -17.6 20.3 -15.55Q24.5 -13.5 29.8 -13.5Q34.300000000000004 -13.5 36.75 -15.05Q39.2 -16.6 39.2 -19.3Q39.2 -22.200000000000003 36.8 -24.0Q34.4 -25.8 30.6 -27.15Q26.8 -28.5 22.6 -30.05Q18.400000000000002 -31.6 14.600000000000001 -34.05Q10.8 -36.5 8.4 -40.45Q6.0 -44.400000000000006 6.0 -50.5Q6.0 -57.2 9.25 -62.050000000000004Q12.5 -66.9 18.3 -69.5Q24.1 -72.10000000000001 31.8 -72.10000000000001Q39.5 -72.10000000000001 46.0 -69.45Q52.5 -66.8 56.7 -62.300000000000004L45.300000000000004 -51.0Q42.1 -54.2 38.8 -55.800000000000004Q35.5 -57.400000000000006 31.6 -57.400000000000006Q27.900000000000002 -57.400000000000006 25.800000000000004 -56.150000000000006Q23.700000000000003 -54.900000000000006 23.700000000000003 -52.400000000000006Q23.700000000000003 -49.6 26.1 -47.95Q28.5 -46.300000000000004 32.25 -45.0Q36.0 -43.7 40.25 -42.150000000000006Q44.5 -40.6 48.25 -38.1Q52.0 -35.6 54.400000000000006 -31.5Q56.800000000000004 -27.400000000000002 56.800000000000004 -21.1Q56.800000000000004 -10.5 49.35000000000001 -4.7Q41.900000000000006 1.1 28.5 1.1Z M71.7 0.0 56.199999999999996 -48.900000000000006H73.0L79.9 -22.1L88.1 -48.900000000000006H103.6L111.80000000000001 -22.1L118.80000000000001 -48.900000000000006H135.6L120.1 0.0H104.4L95.9 -27.6L87.2 0.0Z M145.79999999999998 -54.6Q141.9 -54.6 139.3 -57.3Q136.7 -60.0 136.7 -63.900000000000006Q136.7 -67.8 139.3 -70.5Q141.9 -73.2 145.79999999999998 -73.2Q149.79999999999998 -73.2 152.39999999999998 -70.5Q155.0 -67.8 155.0 -63.900000000000006Q155.0 -60.0 152.39999999999998 -57.3Q149.79999999999998 -54.6 145.79999999999998 -54.6ZM137.1 0.0V-48.900000000000006H154.6V0.0Z M168.4 0.0V-34.4H157.6V-48.900000000000006H168.4V-69.10000000000001H185.8V-48.900000000000006H196.6V-34.4H185.8V0.0Z M223.1 1.1Q215.29999999999998 1.1 209.04999999999998 -2.2Q202.79999999999998 -5.5 199.2 -11.25Q195.6 -17.0 195.6 -24.400000000000002Q195.6 -31.8 199.25 -37.6Q202.89999999999998 -43.400000000000006 209.14999999999998 -46.75Q215.39999999999998 -50.1 223.29999999999998 -50.1Q234.6 -50.1 242.29999999999998 -42.5L231.29999999999998 -31.5Q228.29999999999998 -34.5 223.29999999999998 -34.5Q219.0 -34.5 216.14999999999998 -31.75Q213.29999999999998 -29.0 213.29999999999998 -24.5Q213.29999999999998 -20.0 216.2 -17.2Q219.1 -14.4 223.29999999999998 -14.4Q226.1 -14.4 228.1 -15.3Q230.1 -16.2 231.6 -17.900000000000002L242.7 -6.9Q238.5 -2.8000000000000003 233.8 -0.8500000000000001Q229.1 1.1 223.1 1.1Z M245.99999999999997 0.0V-72.9H263.4V-46.0Q268.4 -49.900000000000006 275.79999999999995 -49.900000000000006Q281.7 -49.900000000000006 286.0 -47.550000000000004Q290.29999999999995 -45.2 292.69999999999993 -41.05Q295.09999999999997 -36.9 295.09999999999997 -31.6V0.0H277.7V-27.6Q277.7 -31.0 275.65 -32.95Q273.59999999999997 -34.9 270.59999999999997 -34.9Q267.5 -34.9 265.45 -32.95Q263.4 -31.0 263.4 -27.6V0.0Z M302.5 0.0V-70.9H353.4V-55.800000000000004H320.4V-41.6H351.8V-26.5H320.4V0.0Z M358.5 0.0V-72.9H375.9V0.0Z M391.7 -54.6Q387.8 -54.6 385.20000000000005 -57.3Q382.6 -60.0 382.6 -63.900000000000006Q382.6 -67.8 385.20000000000005 -70.5Q387.8 -73.2 391.7 -73.2Q395.7 -73.2 398.29999999999995 -70.5Q400.9 -67.8 400.9 -63.900000000000006Q400.9 -60.0 398.29999999999995 -57.3Q395.7 -54.6 391.7 -54.6ZM383.0 0.0V-48.900000000000006H400.5V0.0Z M407.6 20.700000000000003V-48.900000000000006H425.0V-46.300000000000004Q427.4 -48.0 430.4 -48.95Q433.4 -49.900000000000006 436.7 -49.900000000000006Q443.8 -49.900000000000006 449.20000000000005 -46.60000000000001Q454.6 -43.300000000000004 457.65 -37.550000000000004Q460.7 -31.8 460.7 -24.400000000000002Q460.7 -17.1 457.65 -11.350000000000001Q454.6 -5.6000000000000005 449.20000000000005 -2.3000000000000003Q443.8 1.0 436.7 1.0Q429.8 1.0 424.6 -2.5V20.700000000000003ZM433.5 -14.5Q437.7 -14.5 440.4 -17.3Q443.1 -20.1 443.1 -24.5Q443.1 -28.8 440.4 -31.6Q437.7 -34.4 433.6 -34.4Q429.3 -34.4 426.65 -31.65Q424.0 -28.900000000000002 424.0 -24.5Q424.0 -20.1 426.65 -17.3Q429.3 -14.5 433.5 -14.5Z" fill="currentColor"/></svg></a>
   <span>SwitchFlip LLC, Denver. Pending certified partnership with Anthropic.</span>
-  <span>© 2026 SwitchFlip LLC</span>
+  <span>© 2026 SwitchFlip LLC. Photos via Unsplash.</span>
 </div></footer>
 
 <script>
@@ -328,6 +338,38 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
   sw.addEventListener('click', function(){ set(sw.getAttribute('aria-checked')!=='true'); });
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce){ set(true); } else { setTimeout(function(){ if(sw.getAttribute('aria-checked')!=='true') set(true); }, 1600); }
+})();
+(function(){
+  var cf=document.getElementById('cf'), track=document.getElementById('cfTrack'); if(!cf) return;
+  var cards=[].slice.call(track.children), n=cards.length, active=0, timer=null;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function step(){ return window.innerWidth<760?150:230; }
+  function render(){
+    var s=step();
+    cards.forEach(function(c,i){
+      var d=((i-active)%n+n)%n; if(d>n/2) d-=n;
+      var a=Math.abs(d), show=a<=2;
+      c.style.opacity=show?(a===0?1:a===1?.85:.5):0;
+      c.style.pointerEvents=show?'auto':'none';
+      c.style.zIndex=10-a;
+      c.style.filter=a===0?'none':'saturate(.8)';
+      c.style.transform='translateX('+(d*s)+'px) translateZ('+(-a*140)+'px) rotateY('+(-d*18)+'deg) scale('+(1-a*.1)+')';
+      c.classList.toggle('is-active',a===0);
+      c.setAttribute('aria-hidden',show?'false':'true');
+    });
+  }
+  function go(k){ active=((active+k)%n+n)%n; render(); }
+  function start(){ if(reduce||timer) return; timer=setInterval(function(){go(1)},3200); }
+  function stop(){ clearInterval(timer); timer=null; }
+  cards.forEach(function(c,i){ c.addEventListener('click',function(){ active=i; render(); stop(); start(); }); });
+  document.getElementById('cfPrev').addEventListener('click',function(){go(-1);stop();start();});
+  document.getElementById('cfNext').addEventListener('click',function(){go(1);stop();start();});
+  cf.addEventListener('keydown',function(e){ if(e.key==='ArrowLeft'){go(-1);e.preventDefault();} if(e.key==='ArrowRight'){go(1);e.preventDefault();} });
+  cf.addEventListener('mouseenter',stop); cf.addEventListener('mouseleave',start);
+  var x0=null; cf.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;stop();},{passive:true});
+  cf.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>40) go(dx<0?1:-1); x0=null; start(); });
+  window.addEventListener('resize',render);
+  render(); start();
 })();
 </script>
 </body>
