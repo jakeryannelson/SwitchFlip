@@ -71,8 +71,14 @@ h1 em{font-style:italic}
 .demo-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px}
 .demo-top .label{display:flex;align-items:baseline;gap:12px;font-family:var(--serif);font-weight:500;font-size:30px;line-height:1;color:var(--ink)}
 .demo-top .label .state{display:inline-grid}
-.demo-top .label .hint{font-family:var(--sans);font-size:14px;font-weight:400;color:var(--muted);transition:opacity .3s}
-.demo.on .demo-top .label .hint{opacity:0}
+.flipper{display:flex;align-items:center;gap:12px;flex:none}
+.hint{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--accent);white-space:nowrap;transition:opacity .3s}
+.hint svg{width:16px;height:16px;flex:none}
+.hint .hs{display:none}
+.demo.on .hint{opacity:0}
+/* a slow ring around the switch until the visitor has flipped it once */
+@keyframes nudge{0%{box-shadow:0 0 0 0 rgba(106,59,224,.45)}70%{box-shadow:0 0 0 12px rgba(106,59,224,0)}100%{box-shadow:0 0 0 0 rgba(106,59,224,0)}}
+.demo:not(.used) .switch{animation:nudge 2.4s ease-out infinite}
 .switch{position:relative;flex:none;width:76px;height:44px;border:0;border-radius:999px;background:var(--off-track);cursor:pointer;padding:0;transition:background .35s var(--ease)}
 .switch .knob{position:absolute;top:5px;left:5px;width:34px;height:34px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(21,19,26,.25);transition:transform .35s var(--ease)}
 .switch[aria-checked="true"]{background:var(--accent)}
@@ -197,6 +203,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
   .sub{font-size:18px;margin-bottom:40px}
   .demo{padding:22px 20px 18px}
   .demo-top .label{font-size:27px}
+  .flipper{gap:10px}
   .task{grid-template-columns:8px minmax(0,1fr)}
   .task .time{grid-column:2;text-align:left;white-space:normal;padding-top:0}
   .row{padding:28px 0}
@@ -206,6 +213,10 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
   .who-head{gap:16px}
   .portrait{width:88px;height:88px}
   .cta-row .btn{width:100%}
+}
+@media (max-width:400px){
+  .hint .hl{display:none}
+  .hint .hs{display:inline}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
@@ -240,10 +251,13 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 
   <div class="demo" id="demo">
     <div class="demo-top">
-      <div class="label"><span class="swap state" id="state"><span class="before">Before</span><span class="after">After</span></span><span class="hint">Flip it</span></div>
-      <button class="switch" id="switch" type="button" role="switch" aria-checked="false" aria-label="Show the after version">
-        <span class="knob"></span>
-      </button>
+      <div class="label"><span class="swap state" id="state"><span class="before">Before</span><span class="after">After</span></span></div>
+      <div class="flipper">
+        <span class="hint" aria-hidden="true"><span class="hl">Flip the switch</span><span class="hs">Flip it</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h11M9.5 4l4 4-4 4"/></svg></span>
+        <button class="switch" id="switch" type="button" role="switch" aria-checked="false" aria-label="Flip the switch to see the after version">
+          <span class="knob"></span>
+        </button>
+      </div>
     </div>
     <ul class="tasks"><li class="task"><span class="dot"></span><div><div class="what">Starting the week</div><div class="swap how"><span class="before">You check your inbox and your bank account to work out where things stand.</span><span class="after">A short summary is waiting for you with money in, money owed, what's on this week, and anything that needs your attention.</span></div></div><div class="swap time"><span class="before">An hour, every Monday</span><span class="after">A few minutes</span></div></li><li class="task"><span class="dot"></span><div><div class="what">A message comes in after hours</div><div class="swap how"><span class="before">It waits until morning, and by then they may have called someone else.</span><span class="after">They get an answer within minutes that offers a booking, a quote, or a call back. You decide what it's allowed to send.</span></div></div><div class="swap time"><span class="before">The next day</span><span class="after">Minutes</span></div></li><li class="task"><span class="dot"></span><div><div class="what">Overdue invoices</div><div class="swap how"><span class="before">You keep a list and send reminders when you remember to.</span><span class="after">Polite reminders go out on a schedule, and you get a list of the customers worth calling.</span></div></div><div class="swap time"><span class="before">Hours a week</span><span class="after">Minutes a week</span></div></li><li class="task"><span class="dot"></span><div><div class="what">Forms and paperwork</div><div class="swap how"><span class="before">Someone reads each form, email, or PDF and types the details into your system.</span><span class="after">The details are entered for you, and anything unclear is flagged for a person to check.</span></div></div><div class="swap time"><span class="before">Every day</span><span class="after">Seconds each</span></div></li></ul>
     <p class="foot">These are examples of work Claude can do today. The times are estimates, and we measure your real numbers before and after.</p>
@@ -338,16 +352,9 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 
 <script>
 (function(){
-  var demo=document.getElementById('demo'), sw=document.getElementById('switch'), auto=null, touched=false;
-  function set(on){ sw.setAttribute('aria-checked', on?'true':'false'); demo.classList.toggle('on', on); }
-  sw.addEventListener('click', function(){ touched=true; clearTimeout(auto); set(sw.getAttribute('aria-checked')!=='true'); });
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){ set(true); return; }
-  function arm(ms){ if(touched||auto) return; auto=setTimeout(function(){ if(!touched) set(true); }, ms); }
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); arm(1200); } },{threshold:.4});
-    io.observe(demo);
-  } else { arm(1600); }
+  /* starts on Before and only changes when the visitor flips it */
+  var demo=document.getElementById('demo'), sw=document.getElementById('switch');
+  sw.addEventListener('click', function(){ var on=sw.getAttribute('aria-checked')!=='true'; sw.setAttribute('aria-checked', on?'true':'false'); demo.classList.toggle('on', on); demo.classList.add('used'); });
 })();
 (function(){
   var cf=document.getElementById('cf'), track=document.getElementById('cfTrack'); if(!cf) return;
