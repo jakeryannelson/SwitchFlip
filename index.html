@@ -110,7 +110,7 @@ h2{font-size:clamp(36px,3.8vw,54px);line-height:1.08;letter-spacing:-.022em}
 /* industries coverflow (motion moment 2) */
 #who{overflow:hidden}
 #who .sub{margin-bottom:40px}
-.cf{position:relative;height:300px;perspective:1400px;outline:none}
+.cf{position:relative;height:300px;perspective:1400px;outline:none;overscroll-behavior-x:contain}
 .cf:focus-visible{outline:3px solid var(--violet);outline-offset:-3px;border-radius:20px}
 .cf-track{list-style:none;margin:0;padding:0;position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
 .cf-card{position:absolute;left:50%;top:50%;width:340px;height:240px;margin:-120px 0 0 -170px;border-radius:16px;background:#E9E6F0;box-shadow:0 14px 36px rgba(21,19,26,.14);overflow:hidden;cursor:pointer;transition:transform .6s var(--ease),opacity .6s var(--ease),filter .6s var(--ease),box-shadow .6s var(--ease);will-change:transform;opacity:0;pointer-events:none}
@@ -136,9 +136,17 @@ h2{font-size:clamp(36px,3.8vw,54px);line-height:1.08;letter-spacing:-.022em}
 .dark{background:var(--ink);color:#C9C5D6}
 .dark h2,.dark h3{color:#fff}
 .dark .sub{color:#C9C5D6;max-width:640px}
-.track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
-.step{position:relative;border-top:1px solid #3A3644;padding-top:26px}
-.step::before{content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--violet)}
+.track{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.track::before,.track::after{content:"";position:absolute;left:0;top:0;height:2px;border-radius:2px}
+.track::before{right:0;background:#3A3644}
+.track::after{width:100%;background:var(--violet);transform:scaleX(0);transform-origin:left center}
+.track.go::after{transform:scaleX(1);transition:transform 3.6s linear}
+.step{position:relative;padding-top:28px}
+.step::before{content:"";position:absolute;z-index:1;top:-4px;left:0;width:10px;height:10px;border-radius:50%;background:#5A5566}
+.track.go .step::before{background:var(--violet);transition:background .35s var(--ease)}
+.track.go .step:nth-child(2)::before{transition-delay:.93s}
+.track.go .step:nth-child(3)::before{transition-delay:1.85s}
+.track.go .step:nth-child(4)::before{transition-delay:2.78s}
 .step small{display:block;font-family:var(--sans);font-size:14px;font-weight:500;color:#B9A6FA;margin-bottom:10px;letter-spacing:0}
 .step h3{font-size:25px;line-height:1.2;letter-spacing:-.01em;margin-bottom:10px}
 .step p{font-size:16px;line-height:1.55}
@@ -185,6 +193,9 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
   .nav ul{gap:22px}
   .row,.fit{grid-template-columns:minmax(0,1fr)}
   .track{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
+  .track::before,.track::after{display:none}
+  .step{border-top:1px solid #3A3644;padding-top:26px}
+  .step::before{top:-5px;background:var(--violet)}
 }
 @media (max-width:760px){
   .nav nav{display:none}
@@ -398,11 +409,27 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
   cf.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
   cf.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null; if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){ go(dx<0?1:-1); took(); } });
   cf.addEventListener('touchcancel',function(){x0=null;});
+  /* two-finger sideways swipe on a trackpad; vertical scrolling passes straight through */
+  var wAcc=0, wLock=0, wLast=0;
+  cf.addEventListener('wheel',function(e){
+    if(Math.abs(e.deltaX)<=Math.abs(e.deltaY)) return;
+    e.preventDefault();
+    var now=Date.now(); if(now<wLock) return;
+    if(now-wLast>250) wAcc=0;
+    wLast=now; wAcc+=e.deltaX;
+    if(Math.abs(wAcc)>=50){ go(wAcc>0?1:-1); took(); wAcc=0; wLock=now+380; }
+  },{passive:false});
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){ inview=es[0].isIntersecting; sync(); },{threshold:.2}).observe(cf);
   }
   window.addEventListener('resize',render);
   render(); sync();
+})();
+(function(){
+  /* the bar under How it goes fills each time the section comes on screen */
+  var t=document.querySelector('.track'); if(!t) return;
+  if(!('IntersectionObserver' in window)){ t.classList.add('go'); return; }
+  new IntersectionObserver(function(es){ t.classList.toggle('go', es[0].isIntersecting); },{threshold:.5}).observe(t);
 })();
 </script>
 </body>
