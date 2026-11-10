@@ -7,8 +7,14 @@
 <meta name="description" content="SwitchFlip is an applied AI shop in Denver. New websites, Claude connected to the apps you already use, and agents that own a whole job. Any industry, any size.">
 <meta property="og:title" content="SwitchFlip">
 <meta property="og:description" content="Flip the switch on the work nobody should do by hand. Applied AI for Denver businesses of any size.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://switchflip.ai/">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://switchflip.ai/">
 <meta name="theme-color" content="#FBFAFD">
 <link rel="icon" href="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%201024'><rect%20width='1024'%20height='1024'%20rx='224'%20fill='%2315131A'/><g%20transform='translate(333.8%20232)%20scale(3.1818)'><rect%20x='4'%20y='4'%20width='104'%20height='42'%20rx='21'%20fill='%23FBFAFD'/><circle%20cx='25'%20cy='25'%20r='15'%20fill='%2315131A'/><rect%20x='4'%20y='54'%20width='104'%20height='42'%20rx='21'%20fill='%238B5CF6'/><circle%20cx='87'%20cy='75'%20r='15'%20fill='%2315131A'/><rect%20x='4'%20y='104'%20width='42'%20height='68'%20rx='21'%20fill='%238B5CF6'/><circle%20cx='25'%20cy='151'%20r='15'%20fill='%2315131A'/></g></svg>">
+<link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&amp;family=Outfit:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -16,7 +22,7 @@
 :root{
   --ink:#15131A; --text:#3B3846; --muted:#5E5A6B;
   --ground:#FBFAFD; --paper:#FFFFFF; --line:#E6E3EE; --line-soft:#ECE9F2; --off:#CFCBD9;
-  --violet:#8B5CF6; --accent:#6A3BE0; --accent-dark:#5630C4;
+  --violet:#8B5CF6; --accent:#6A3BE0; --accent-dark:#5630C4; --off-track:#8B8798;
   --serif:'Newsreader',Georgia,'Times New Roman',serif;
   --sans:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;
   --ease:cubic-bezier(.2,.8,.2,1);
@@ -30,24 +36,27 @@ a{color:inherit}
 img{max-width:100%}
 :focus-visible{outline:3px solid var(--violet);outline-offset:3px;border-radius:6px}
 .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.skip{position:absolute;left:16px;top:-80px;z-index:20;padding:10px 16px;border-radius:8px;background:var(--ink);color:#fff;text-decoration:none}
+.skip:focus{top:12px}
 
 /* logo */
 .logo{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);min-height:44px}
 .logo .mark{height:34px;width:auto}
 .logo .wordmark{height:20px;width:auto}
 .logo .mark circle{transition:cx .35s var(--ease),cy .35s var(--ease)}
-.logo:hover .k1{cx:87} .logo:hover .k2{cx:25} .logo:hover .k3{cy:125}
+.logo:hover .k1{cx:87px} .logo:hover .k2{cx:25px} .logo:hover .k3{cy:125px}
 
 /* header */
 header{position:sticky;top:0;z-index:10;background:rgba(251,250,253,.9);-webkit-backdrop-filter:saturate(180%) blur(12px);backdrop-filter:saturate(180%) blur(12px)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
-.nav ul{display:flex;gap:32px;list-style:none;margin:0 0 0 auto;padding:0}
-.nav ul a{display:inline-block;padding:12px 0;text-decoration:none;font-size:15px;font-weight:500;color:var(--text)}
+.nav nav{margin-left:auto}
+.nav ul{display:flex;gap:32px;list-style:none;margin:0;padding:0}
+.nav ul a{display:inline-block;padding:12px 0;text-decoration:none;font-size:15px;font-weight:500;color:var(--text);white-space:nowrap}
 .nav ul a:hover{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:999px;font-family:var(--sans);font-weight:500;font-size:17px;text-decoration:none;background:var(--accent);color:#fff;border:1px solid var(--accent);transition:background .15s,border-color .15s,color .15s}
-.btn:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:999px;font-family:var(--sans);font-weight:500;font-size:17px;text-decoration:none;white-space:nowrap;background:var(--accent);color:#fff;border:1px solid var(--accent);transition:background .15s,border-color .15s,color .15s}
+@media (hover:hover){.btn:hover{background:var(--accent-dark);border-color:var(--accent-dark)}}
 .btn.ghost{min-height:44px;padding:0 20px;font-size:15px;background:transparent;color:var(--ink);border-color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#fff}
+@media (hover:hover){.btn.ghost:hover{background:var(--ink);border-color:var(--ink);color:#fff}}
 
 /* hero */
 .hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:64px;align-items:center;padding-top:72px;padding-bottom:104px}
@@ -61,10 +70,10 @@ h1 em{font-style:italic}
 .demo{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px 28px 22px;box-shadow:0 1px 2px rgba(21,19,26,.04),0 16px 40px rgba(21,19,26,.06)}
 .demo-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px}
 .demo-top .label{display:flex;align-items:baseline;gap:12px;font-family:var(--serif);font-weight:500;font-size:30px;line-height:1;color:var(--ink)}
-.demo-top .label #state{display:inline-block;min-width:4.2ch}
+.demo-top .label .state{display:inline-grid}
 .demo-top .label .hint{font-family:var(--sans);font-size:14px;font-weight:400;color:var(--muted);transition:opacity .3s}
 .demo.on .demo-top .label .hint{opacity:0}
-.switch{position:relative;flex:none;width:76px;height:44px;border:0;border-radius:999px;background:var(--off);cursor:pointer;padding:0;transition:background .35s var(--ease)}
+.switch{position:relative;flex:none;width:76px;height:44px;border:0;border-radius:999px;background:var(--off-track);cursor:pointer;padding:0;transition:background .35s var(--ease)}
 .switch .knob{position:absolute;top:5px;left:5px;width:34px;height:34px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(21,19,26,.25);transition:transform .35s var(--ease)}
 .switch[aria-checked="true"]{background:var(--accent)}
 .switch[aria-checked="true"] .knob{transform:translateX(32px)}
@@ -97,17 +106,18 @@ h2{font-size:clamp(36px,3.8vw,54px);line-height:1.08;letter-spacing:-.022em}
 #who .sub{margin-bottom:40px}
 .cf{position:relative;height:300px;perspective:1400px;outline:none}
 .cf:focus-visible{outline:3px solid var(--violet);outline-offset:-3px;border-radius:20px}
-.cf-track{list-style:none;margin:0;padding:0;position:absolute;inset:0;transform-style:preserve-3d}
+.cf-track{list-style:none;margin:0;padding:0;position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
 .cf-card{position:absolute;left:50%;top:50%;width:340px;height:240px;margin:-120px 0 0 -170px;border-radius:16px;background:#E9E6F0;box-shadow:0 14px 36px rgba(21,19,26,.14);overflow:hidden;cursor:pointer;transition:transform .6s var(--ease),opacity .6s var(--ease),filter .6s var(--ease),box-shadow .6s var(--ease);will-change:transform;opacity:0;pointer-events:none}
 .cf-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .cf-card img[hidden]{display:none}
 .cf-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,19,26,0) 42%,rgba(21,19,26,.8) 100%)}
-.cf-card span{position:absolute;left:22px;right:22px;bottom:18px;z-index:1;color:#fff;font-family:var(--serif);font-weight:500;font-size:25px;line-height:1.1;letter-spacing:-.01em}
+.cf-card span{position:absolute;left:22px;right:22px;bottom:18px;z-index:1;color:#fff;font-family:var(--serif);font-weight:500;font-size:25px;line-height:1.1;letter-spacing:-.01em;transition:opacity .4s var(--ease)}
+.cf-card:not(.is-active) span{opacity:0}
 .cf-card.is-active{box-shadow:0 24px 60px rgba(21,19,26,.24);cursor:default}
 .cf-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s,border-color .15s}
 .cf-btn svg{width:20px;height:20px}
 .cf-btn.prev{left:max(16px,calc(50% - 568px))} .cf-btn.next{right:max(16px,calc(50% - 568px))}
-.cf-btn:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+@media (hover:hover){.cf-btn:hover{background:var(--ink);border-color:var(--ink);color:#fff}}
 
 /* services */
 .rows{border-top:1px solid var(--line)}
@@ -150,8 +160,8 @@ h2{font-size:clamp(36px,3.8vw,54px);line-height:1.08;letter-spacing:-.022em}
 #contact{padding:112px 0}
 .contact{max-width:720px;margin:0 auto;text-align:center}
 .contact p{font-size:19px;max-width:480px;margin:18px auto 36px}
-.contact .alt{margin-top:18px;font-size:16px;color:var(--muted)}
-.contact .alt a{color:var(--ink)}
+.contact .alt{margin-top:6px;font-size:16px;color:var(--muted)}
+.contact .alt a{display:inline-block;padding:12px 0;color:var(--ink)}
 
 footer{border-top:1px solid var(--line);padding:36px 0 44px;color:var(--muted);font-size:15px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justify-content:space-between}
@@ -171,6 +181,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
   .track{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
 }
 @media (max-width:760px){
+  .nav nav{display:none}
   .cf{height:240px}
   .cf-card{width:260px;height:190px;margin:-95px 0 0 -130px}
   .cf-card span{font-size:21px;left:18px;right:18px;bottom:14px}
@@ -179,7 +190,6 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 @media (max-width:640px){
   .wrap{padding:0 20px}
   .nav{height:68px}
-  .nav ul{display:none}
   .hero{padding-top:36px;padding-bottom:72px;gap:40px}
   .lede{font-size:18px;margin:22px 0 28px}
   section{padding:72px 0}
@@ -203,20 +213,21 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 </style>
 </head>
 <body id="top">
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap nav">
     <a class="logo" href="#top" aria-label="SwitchFlip home"><svg class="mark" viewBox="0 0 112 176" aria-hidden="true"><rect x="4" y="4" width="104" height="42" rx="21" fill="currentColor"/><circle class="k1" cx="25" cy="25" r="15" fill="var(--ground)"/><rect x="4" y="54" width="104" height="42" rx="21" fill="currentColor"/><circle class="k2" cx="87" cy="75" r="15" fill="var(--violet)"/><rect x="4" y="104" width="42" height="68" rx="21" fill="currentColor"/><circle class="k3" cx="25" cy="151" r="15" fill="var(--violet)"/></svg><svg class="wordmark" viewBox="0 -71 463 97" aria-hidden="true"><path d="M28.5 1.1Q19.5 1.1 13.0 -1.5999999999999999Q6.5 -4.3 1.1 -10.100000000000001L12.4 -21.5Q16.1 -17.6 20.3 -15.55Q24.5 -13.5 29.8 -13.5Q34.300000000000004 -13.5 36.75 -15.05Q39.2 -16.6 39.2 -19.3Q39.2 -22.200000000000003 36.8 -24.0Q34.4 -25.8 30.6 -27.15Q26.8 -28.5 22.6 -30.05Q18.400000000000002 -31.6 14.600000000000001 -34.05Q10.8 -36.5 8.4 -40.45Q6.0 -44.400000000000006 6.0 -50.5Q6.0 -57.2 9.25 -62.050000000000004Q12.5 -66.9 18.3 -69.5Q24.1 -72.10000000000001 31.8 -72.10000000000001Q39.5 -72.10000000000001 46.0 -69.45Q52.5 -66.8 56.7 -62.300000000000004L45.300000000000004 -51.0Q42.1 -54.2 38.8 -55.800000000000004Q35.5 -57.400000000000006 31.6 -57.400000000000006Q27.900000000000002 -57.400000000000006 25.800000000000004 -56.150000000000006Q23.700000000000003 -54.900000000000006 23.700000000000003 -52.400000000000006Q23.700000000000003 -49.6 26.1 -47.95Q28.5 -46.300000000000004 32.25 -45.0Q36.0 -43.7 40.25 -42.150000000000006Q44.5 -40.6 48.25 -38.1Q52.0 -35.6 54.400000000000006 -31.5Q56.800000000000004 -27.400000000000002 56.800000000000004 -21.1Q56.800000000000004 -10.5 49.35000000000001 -4.7Q41.900000000000006 1.1 28.5 1.1Z M71.7 0.0 56.199999999999996 -48.900000000000006H73.0L79.9 -22.1L88.1 -48.900000000000006H103.6L111.80000000000001 -22.1L118.80000000000001 -48.900000000000006H135.6L120.1 0.0H104.4L95.9 -27.6L87.2 0.0Z M145.79999999999998 -54.6Q141.9 -54.6 139.3 -57.3Q136.7 -60.0 136.7 -63.900000000000006Q136.7 -67.8 139.3 -70.5Q141.9 -73.2 145.79999999999998 -73.2Q149.79999999999998 -73.2 152.39999999999998 -70.5Q155.0 -67.8 155.0 -63.900000000000006Q155.0 -60.0 152.39999999999998 -57.3Q149.79999999999998 -54.6 145.79999999999998 -54.6ZM137.1 0.0V-48.900000000000006H154.6V0.0Z M168.4 0.0V-34.4H157.6V-48.900000000000006H168.4V-69.10000000000001H185.8V-48.900000000000006H196.6V-34.4H185.8V0.0Z M223.1 1.1Q215.29999999999998 1.1 209.04999999999998 -2.2Q202.79999999999998 -5.5 199.2 -11.25Q195.6 -17.0 195.6 -24.400000000000002Q195.6 -31.8 199.25 -37.6Q202.89999999999998 -43.400000000000006 209.14999999999998 -46.75Q215.39999999999998 -50.1 223.29999999999998 -50.1Q234.6 -50.1 242.29999999999998 -42.5L231.29999999999998 -31.5Q228.29999999999998 -34.5 223.29999999999998 -34.5Q219.0 -34.5 216.14999999999998 -31.75Q213.29999999999998 -29.0 213.29999999999998 -24.5Q213.29999999999998 -20.0 216.2 -17.2Q219.1 -14.4 223.29999999999998 -14.4Q226.1 -14.4 228.1 -15.3Q230.1 -16.2 231.6 -17.900000000000002L242.7 -6.9Q238.5 -2.8000000000000003 233.8 -0.8500000000000001Q229.1 1.1 223.1 1.1Z M245.99999999999997 0.0V-72.9H263.4V-46.0Q268.4 -49.900000000000006 275.79999999999995 -49.900000000000006Q281.7 -49.900000000000006 286.0 -47.550000000000004Q290.29999999999995 -45.2 292.69999999999993 -41.05Q295.09999999999997 -36.9 295.09999999999997 -31.6V0.0H277.7V-27.6Q277.7 -31.0 275.65 -32.95Q273.59999999999997 -34.9 270.59999999999997 -34.9Q267.5 -34.9 265.45 -32.95Q263.4 -31.0 263.4 -27.6V0.0Z M302.5 0.0V-70.9H353.4V-55.800000000000004H320.4V-41.6H351.8V-26.5H320.4V0.0Z M358.5 0.0V-72.9H375.9V0.0Z M391.7 -54.6Q387.8 -54.6 385.20000000000005 -57.3Q382.6 -60.0 382.6 -63.900000000000006Q382.6 -67.8 385.20000000000005 -70.5Q387.8 -73.2 391.7 -73.2Q395.7 -73.2 398.29999999999995 -70.5Q400.9 -67.8 400.9 -63.900000000000006Q400.9 -60.0 398.29999999999995 -57.3Q395.7 -54.6 391.7 -54.6ZM383.0 0.0V-48.900000000000006H400.5V0.0Z M407.6 20.700000000000003V-48.900000000000006H425.0V-46.300000000000004Q427.4 -48.0 430.4 -48.95Q433.4 -49.900000000000006 436.7 -49.900000000000006Q443.8 -49.900000000000006 449.20000000000005 -46.60000000000001Q454.6 -43.300000000000004 457.65 -37.550000000000004Q460.7 -31.8 460.7 -24.400000000000002Q460.7 -17.1 457.65 -11.350000000000001Q454.6 -5.6000000000000005 449.20000000000005 -2.3000000000000003Q443.8 1.0 436.7 1.0Q429.8 1.0 424.6 -2.5V20.700000000000003ZM433.5 -14.5Q437.7 -14.5 440.4 -17.3Q443.1 -20.1 443.1 -24.5Q443.1 -28.8 440.4 -31.6Q437.7 -34.4 433.6 -34.4Q429.3 -34.4 426.65 -31.65Q424.0 -28.900000000000002 424.0 -24.5Q424.0 -20.1 426.65 -17.3Q429.3 -14.5 433.5 -14.5Z" fill="currentColor"/></svg></a>
-    <ul>
+    <nav aria-label="Primary"><ul>
       <li><a href="#who">Who it's for</a></li>
       <li><a href="#build">What we do</a></li>
       <li><a href="#how">How it goes</a></li>
       <li><a href="#jake">About</a></li>
-    </ul>
+    </ul></nav>
     <a class="btn ghost" href="https://calendar.app.google/6Db1NM3BfXZGpG2U9">Book a call</a>
   </div>
 </header>
 
-<main>
+<main id="main">
 <div class="wrap hero">
   <div>
     <h1>Flip the switch on the work nobody should do <em>by hand.</em></h1>
@@ -229,8 +240,8 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 
   <div class="demo" id="demo">
     <div class="demo-top">
-      <div class="label"><span id="state">Before</span><span class="hint">Flip it</span></div>
-      <button class="switch" id="switch" type="button" role="switch" aria-checked="false" aria-label="Flip the switch to see the after">
+      <div class="label"><span class="swap state" id="state"><span class="before">Before</span><span class="after">After</span></span><span class="hint">Flip it</span></div>
+      <button class="switch" id="switch" type="button" role="switch" aria-checked="false" aria-label="Show the after version">
         <span class="knob"></span>
       </button>
     </div>
@@ -239,12 +250,12 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
   </div>
 </div>
 
-<section id="who" class="band" aria-label="Who we work with">
+<section id="who" class="band" aria-labelledby="who-h">
   <div class="wrap center">
-    <h2>Who we work with.</h2>
+    <h2 id="who-h">Who we work with.</h2>
     <p class="sub">Two people or five hundred. The back office looks the same everywhere, and so does the fix.</p>
   </div>
-  <div class="cf" id="cf" tabindex="0" aria-roledescription="carousel" aria-label="Industries">
+  <div class="cf" id="cf" tabindex="0" role="group" aria-roledescription="carousel" aria-label="Industries">
     <button class="cf-btn prev" id="cfPrev" type="button" aria-label="Previous industry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
     <ul class="cf-track" id="cfTrack"><li class="cf-card"><img src="img/retail.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Retail</span></li><li class="cf-card"><img src="img/manufacturing.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Manufacturing</span></li><li class="cf-card"><img src="img/software.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Software</span></li><li class="cf-card"><img src="img/hospitality.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Hospitality</span></li><li class="cf-card"><img src="img/real-estate.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Real estate</span></li><li class="cf-card"><img src="img/professional-services.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Professional services</span></li><li class="cf-card"><img src="img/healthcare.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Healthcare</span></li><li class="cf-card"><img src="img/trades.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Trades</span></li><li class="cf-card"><img src="img/restaurants.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Restaurants</span></li><li class="cf-card"><img src="img/e-commerce.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>E-commerce</span></li><li class="cf-card"><img src="img/logistics.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Logistics</span></li><li class="cf-card"><img src="img/nonprofits.webp" alt="" width="680" height="480" loading="lazy" decoding="async" onerror="this.hidden=true"><span>Nonprofits</span></li></ul>
     <button class="cf-btn next" id="cfNext" type="button" aria-label="Next industry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -256,19 +267,19 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
   <p class="sub">Most people start with the first or second. Each one makes the next easier, but you don't have to do all four.</p>
   <div class="rows">
     <div class="row">
-      <h3><span class="n">1</span><span>A new website</span></h3>
+      <h3><span class="n">1</span> <span>A new website</span></h3>
       <p>If yours is old, slow, or you're a little embarrassed to send people to it, we rebuild it. You get a site that works on a phone and that you can edit yourself. If you don't have email on your own domain or a link people can use to book time with you, we set those up too.</p>
     </div>
     <div class="row">
-      <h3><span class="n">2</span><span>Claude in the apps you already use</span></h3>
+      <h3><span class="n">2</span> <span>Claude in the apps you already use</span></h3>
       <p>We set Claude up for your team and connect it to Gmail, Google Calendar, Drive, Slack, your CRM, your accounting software, whatever you run on. After that it can read the email, check the calendar, find the file, and draft the reply. We train your people on how to use it and write down the rules so nobody has to guess. This usually takes days, not months.</p>
     </div>
     <div class="row">
-      <h3><span class="n">3</span><span>An agent that does a job</span></h3>
+      <h3><span class="n">3</span> <span>An agent that does a job</span></h3>
       <p>Once Claude is connected, we can give it a job to own. Chasing overdue invoices. Sorting the shared inbox. Scheduling. Intake forms. The Monday report. It runs on a schedule, follows the rules you set, keeps a log of what it did, and hands anything unusual to a person.</p>
     </div>
     <div class="row">
-      <h3><span class="n">4</span><span>Bigger builds</span></h3>
+      <h3><span class="n">4</span> <span>Bigger builds</span></h3>
       <p>For companies that outgrow the first three. Custom systems, several agents working together, deeper connections into the software the business runs on. Scoped one project at a time, built with your people watching.</p>
     </div>
   </div>
@@ -302,7 +313,7 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 
 <section id="jake" class="band"><div class="wrap"><div class="about">
   <div class="who-head">
-    <img class="portrait" src="img/jake.webp" alt="Jake Nelson" width="112" height="112">
+    <img class="portrait" src="img/jake.webp" alt="Jake Nelson" width="112" height="112" loading="lazy" decoding="async">
     <h2>Hi, I'm Jake.</h2>
   </div>
   <p>I've spent a decade selling and implementing business software at Oracle NetSuite, Salesforce, and two venture-backed startups, working with everyone from two-person shops to enterprise-size companies, and with the leaders who actually run them: sales, finance, operations, and marketing. <strong>In every one of them I saw the same thing: good people stuck doing work a computer should handle, because nobody had the time to set it up.</strong> SwitchFlip exists to set it up.</p>
@@ -327,17 +338,23 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
 
 <script>
 (function(){
-  var demo=document.getElementById('demo'), sw=document.getElementById('switch'), st=document.getElementById('state');
-  function set(on){ sw.setAttribute('aria-checked', on?'true':'false'); sw.setAttribute('aria-label', on?'Flip the switch to see the before':'Flip the switch to see the after'); demo.classList.toggle('on', on); st.textContent = on?'After':'Before'; }
-  sw.addEventListener('click', function(){ set(sw.getAttribute('aria-checked')!=='true'); });
+  var demo=document.getElementById('demo'), sw=document.getElementById('switch'), auto=null, touched=false;
+  function set(on){ sw.setAttribute('aria-checked', on?'true':'false'); demo.classList.toggle('on', on); }
+  sw.addEventListener('click', function(){ touched=true; clearTimeout(auto); set(sw.getAttribute('aria-checked')!=='true'); });
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){ set(true); } else { setTimeout(function(){ if(sw.getAttribute('aria-checked')!=='true') set(true); }, 1600); }
+  if(reduce){ set(true); return; }
+  function arm(ms){ if(touched||auto) return; auto=setTimeout(function(){ if(!touched) set(true); }, ms); }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); arm(1200); } },{threshold:.4});
+    io.observe(demo);
+  } else { arm(1600); }
 })();
 (function(){
   var cf=document.getElementById('cf'), track=document.getElementById('cfTrack'); if(!cf) return;
   var cards=[].slice.call(track.children), n=cards.length, active=0, timer=null;
+  var hover=false, focused=false, inview=!('IntersectionObserver' in window), manual=false;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function step(){ return window.innerWidth<760?150:230; }
+  function step(){ return window.innerWidth<=760?150:230; }
   function render(){
     var s=step();
     cards.forEach(function(c,i){
@@ -353,17 +370,32 @@ footer .logo .mark{height:28px} footer .logo .wordmark{height:17px}
     });
   }
   function go(k){ active=((active+k)%n+n)%n; render(); }
-  function start(){ if(reduce||timer) return; timer=setInterval(function(){go(1)},3200); }
-  function stop(){ clearInterval(timer); timer=null; }
-  cards.forEach(function(c,i){ c.addEventListener('click',function(){ active=i; render(); stop(); start(); }); });
-  document.getElementById('cfPrev').addEventListener('click',function(){go(-1);stop();start();});
-  document.getElementById('cfNext').addEventListener('click',function(){go(1);stop();start();});
-  cf.addEventListener('keydown',function(e){ if(e.key==='ArrowLeft'){go(-1);e.preventDefault();} if(e.key==='ArrowRight'){go(1);e.preventDefault();} });
-  cf.addEventListener('mouseenter',stop); cf.addEventListener('mouseleave',start);
-  var x0=null; cf.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;stop();},{passive:true});
-  cf.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>40) go(dx<0?1:-1); x0=null; start(); });
+  /* autoplay runs only while on screen, not hovered or focused, and stops for good once the visitor takes over */
+  function sync(){
+    var run=!reduce&&!manual&&!hover&&!focused&&inview;
+    if(run&&!timer){ timer=setInterval(function(){go(1)},3200); }
+    else if(!run&&timer){ clearInterval(timer); timer=null; }
+  }
+  function took(){ manual=true; sync(); }
+  cards.forEach(function(c,i){ c.addEventListener('click',function(){ active=i; render(); took(); }); });
+  document.getElementById('cfPrev').addEventListener('click',function(){go(-1);took();});
+  document.getElementById('cfNext').addEventListener('click',function(){go(1);took();});
+  cf.addEventListener('keydown',function(e){ if(e.key==='ArrowLeft'){go(-1);took();e.preventDefault();} if(e.key==='ArrowRight'){go(1);took();e.preventDefault();} });
+  if(window.matchMedia&&window.matchMedia('(hover:hover)').matches){
+    cf.addEventListener('mouseenter',function(){hover=true;sync();});
+    cf.addEventListener('mouseleave',function(){hover=false;sync();});
+  }
+  cf.addEventListener('focusin',function(){focused=true;sync();});
+  cf.addEventListener('focusout',function(){focused=false;sync();});
+  var x0=null,y0=null;
+  cf.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  cf.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null; if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){ go(dx<0?1:-1); took(); } });
+  cf.addEventListener('touchcancel',function(){x0=null;});
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ inview=es[0].isIntersecting; sync(); },{threshold:.2}).observe(cf);
+  }
   window.addEventListener('resize',render);
-  render(); start();
+  render(); sync();
 })();
 </script>
 </body>
