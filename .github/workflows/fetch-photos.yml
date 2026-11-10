@@ -1,0 +1,41 @@
+name: Fetch industry photos
+on:
+  push:
+    branches: [fetch-photos]
+    paths: ['.github/workflows/fetch-photos.yml']
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download photos at display size
+        run: |
+          set -euo pipefail
+          mkdir -p img
+          while read -r slug id; do
+            curl -fsSL --retry 3 "https://images.unsplash.com/${id}?w=680&h=480&fit=crop&q=78&fm=webp" -o "img/${slug}.webp"
+            test "$(stat -c%s "img/${slug}.webp")" -gt 5000
+          done <<'LIST'
+          retail photo-1771033834141-023d630b3965
+          manufacturing photo-1565954786194-d22abeaac3ae
+          software photo-1551434678-e076c223a692
+          hospitality photo-1656533391150-93d586a9f6f9
+          real-estate photo-1580587771525-78b9dba3b914
+          professional-services photo-1606836591695-4d58a73eba1e
+          healthcare photo-1629909613654-28e377c37b09
+          trades photo-1621905251189-08b45d6a269e
+          restaurants photo-1622021142947-da7dedc7c39a
+          e-commerce photo-1648747067192-790595bc6d5e
+          logistics photo-1689942010216-dc412bb1e7a9
+          nonprofits photo-1593113616828-6f22bca04804
+          LIST
+          ls -la img
+      - name: Commit the photos to this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add img
+          git commit -m "Add industry photos (680x480 WebP)"
+          git push
